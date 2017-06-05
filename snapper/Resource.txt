@@ -1,0 +1,74 @@
+package ##package##;
+
+
+/***************************************************************************
+ * Library translations.
+ ***************************************************************************/
+
+$aeLibraryHeader {
+    english "##name##";
+}
+
+$aePriWss {
+    english "Primary Worksurfaces";
+}
+$aeSecWss {
+    english "Secondary Worksurfaces";
+}
+$aeMeetingEnds {
+    english "Meeting Ends";
+}
+$aeScs {
+    english "System Screens";
+}
+$lsScs {
+    english "Layout Studio Screens";
+}
+$fsScs {
+    english "Frameless Screens";
+}
+$aeModPa {
+    english "Modesty Panel";
+}
+$aeAccs {
+    english "Accessories";
+}
+$aeWm {
+    english "Wire Management";
+}
+
+
+/***************************************************************************
+ * Scheme translations.
+ ***************************************************************************/
+
+$schemeHeader {
+    english "##name##";
+}
+
+
+/***************************************************************************
+ * Worksurfaces
+ ***************************************************************************/
+
+$AeAccessScallop {
+    english "Access scallop";
+}
+
+
+/***************************************************************************
+ * Screens
+ ***************************************************************************/
+ 
+$screenConfiguration {
+    english "Configuration";
+}
+
+
+/***************************************************************************
+ * Wire manager
+ ***************************************************************************/
+
+$AeWireManager.capacity {
+    english "Capacity";
+}

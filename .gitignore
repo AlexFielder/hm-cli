@@ -59,3 +59,6 @@ typings/
 
 # Visual Studio Code .history files
 .history
+
+#notepad++ backups
+*.bak
