@@ -1,0 +1,31 @@
+{
+    "name": "hm-cli",
+    "version": "0.0.1",
+    "description": "CLI for Herman Miller framework for CM Language",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/AlexFielder/hm-cli.git"
+    },
+    "keywords": [
+        "hm",
+        "cli",
+        "cm",
+        "configura"
+    ],
+    "author": "afielder",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/AlexFielder/hm-cli/issues"
+    },
+    "homepage": "https://github.com/AlexFielder/hm-cli#readme",
+    "dependencies": {
+        "commander":"2.9.0"
+    },
+    "bin": {
+        "hm": "./index.js"
+    }
+}
