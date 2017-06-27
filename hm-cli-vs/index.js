@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-
+throw Error;
 const program = require('commander'),
     snapperCommand = require('./snapper/index.js'),
     pkg = require('./package.json');
