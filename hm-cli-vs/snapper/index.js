@@ -32,26 +32,26 @@ module.exports = new (function () {
         longclassname = longname.replace(' ', '');
 
         
-        createOrReplaceDirectory(location, err);
+        createOrReplaceDirectory(location, err => {
 
-        //populate content
-        abbrevContent = populateContent(fs, abbrevTemplate, err);
-        connectRulesContent = populateContent(fs, connectRulesTemplate, err);
-        connectTypesContent = populateContent(fs, connectTypesTemplate, err);
-        constantsContent = populateContent(fs, constantsTemplate, err);
-        extensionContent = populateContent(fs, extensionTemplate, err);
-        extensionDataContent = populateContent(fs, extensionDataTemplate, err);
-        headerContent = populateContent(fs, headerTemplate, err);
-        initContent = populateContent(fs, initTemplate, err);
-        libaryContent = populateContent(fs, libraryTemplate, err);
-        packageContent = populateContent(fs, packageTemplate, err);
-        schemeContent = populateContent(fs, schemeTemplate, err);
-        TAGSContent = populateContent(fs, TAGSTemplate, err);
-        TAGSRSContent = populateContent(fs, TAGRSTemplate, err);
-        worksurfaceContent = populateContent(fs, worksurfaceTemplate, err);
-        //emea content
-        emeainitContent = populateContent(fs, emeainitTemplate, err);
-
+            //populate content
+            abbrevContent = populateContent(fs, abbrevTemplate, err);
+            connectRulesContent = populateContent(fs, connectRulesTemplate, err);
+            connectTypesContent = populateContent(fs, connectTypesTemplate, err);
+            constantsContent = populateContent(fs, constantsTemplate, err);
+            extensionContent = populateContent(fs, extensionTemplate, err);
+            extensionDataContent = populateContent(fs, extensionDataTemplate, err);
+            headerContent = populateContent(fs, headerTemplate, err);
+            initContent = populateContent(fs, initTemplate, err);
+            libaryContent = populateContent(fs, libraryTemplate, err);
+            packageContent = populateContent(fs, packageTemplate, err);
+            schemeContent = populateContent(fs, schemeTemplate, err);
+            TAGSContent = populateContent(fs, TAGSTemplate, err);
+            TAGSRSContent = populateContent(fs, TAGRSTemplate, err);
+            worksurfaceContent = populateContent(fs, worksurfaceTemplate, err);
+            //emea content
+            emeainitContent = populateContent(fs, emeainitTemplate, err);
+        });
         let abbrevFile = `${shortname}.cm`,
             connectRulesFile = `${twoletteracronym}connectRules.cm`,
             connectTypesFile = `connectTypes.cm`,
