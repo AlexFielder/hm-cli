@@ -1,0 +1,816 @@
+
+ae120DegAutoSupportPositionEnv.cm,2334
+package ##package##;##longclassname##36,1672
+public class Ae120DegAutoSupportPositionEnv 43,1791
+    public HmWorksurface ws : copy=44,1837
+    public constructor(47,1906
+    private Bool _allowShareLS;53,1996
+    extend public bool allowShareLS(54,2028
+    private Bool _allowShareRS;65,2368
+    extend public bool allowShareRS(66,2400
+    private Bool _allowShareLB;77,2742
+    extend public bool allowShareLB(78,2774
+    private Bool _allowShareRB;85,2945
+    extend public bool allowShareRB(86,2977
+    private Bool _allowShareLBRS;93,3152
+    extend public bool allowShareLBRS(94,3186
+    private Bool _allowShareRBLS;101,3372
+    extend public bool allowShareRBLS(102,3406
+    private Bool _allowShareLSRB;109,3592
+    extend public bool allowShareLSRB(110,3626
+    private Bool _allowShareRSLB;117,3812
+    extend public bool allowShareRSLB(118,3846
+    private Bool _dEndShareL;125,4032
+    extend public bool dEndShareL(126,4062
+    private Bool _dEndShareR;134,4216
+    extend public bool dEndShareR(135,4246
+    private HmWorksurface _wsOnLB;145,4453
+    extend public HmWorksurface wsOnLB(146,4488
+    private HmWorksurface _wsOnRB;153,4621
+    extend public HmWorksurface wsOnRB(154,4656
+    private HmWorksurface _wsOnLBR;161,4789
+    extend public HmWorksurface wsOnLBR(162,4825
+    private HmWorksurface _wsOnRBL;169,4971
+    extend public HmWorksurface wsOnRBL(170,5007
+    private HmWorksurface _wsOnLS;180,5200
+    extend public HmWorksurface wsOnLS(181,5235
+    private HmWorksurface _wsOnRS;188,5368
+    extend public HmWorksurface wsOnRS(189,5403
+    private HmWorksurface _wsOnLSRB;196,5536
+    extend public HmWorksurface wsOnLSRB(197,5573
+    private HmWorksurface _wsOnRSLB;204,5719
+    extend public HmWorksurface wsOnRSLB(205,5756
+    private HmCabinet _cabOnLS;214,5923
+    extend public HmCabinet cabOnLS(215,5955
+    private HmCabinet _cabOnRS;222,6095
+    extend public HmCabinet cabOnRS(223,6127
+    extend public double yOffset(237,6550
+    private Double _legOffsetLeft;245,6739
+    private Double _legOffsetLeft; private Double _legOffsetRight;245,6739
+    extend public double legOffset(246,6806
+    extend public void addUnderStructureSupports(271,7458
+    public str toS(394,13531
+    extend public void dump(403,13724
+
+ae120DegWorksurface.cm,71
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+
+ae120DegWorksurfaceSupportSystem.cm,167
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class Ae120DegWorksurfaceSupportSystem extends AeCornerSupportSystem : abstract 42,1805
+
+aeAccessCutoutType.cm,138
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeAccessScallop extends HmAccessCutoutCentre 43,1834
+
+aeAccessFlap.cm,210
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeAccessFlapInset extends AeAccessFlap : abstract 48,1932
+public class AeAccessFlap extends HmAccessFlap : abstract 85,2538
+
+aeBaerrelMeetingWorksurface.cm,112
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 41,1781
+
+aeBeamAccessory.cm,140
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeBeamAccessory extends HmAccessory : abstract 39,1720
+
+aeBeamClampSupport.cm,275
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+public class AeBeamClampSupport extends AeWsSupportDetail : abstract 48,1938
+public class AeBeamToBeamClampSupport extends AeWsSupportDetail : abstract 119,3834
+
+aeBeamEndCap.cm,261
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+public class AeBeamEndCap extends AeWsSupportDetail : abstract 48,1925
+public class AeDEndBeamEndCap extends AeWsSupportDetail : abstract 138,4165
+
+aeBeamSupport.cm,140
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeBeamSupport extends HmBeamSupport : abstract 42,1778
+
+aeConnectRules.cm,447
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public ConnectRule wireMgrToBeamRule;44,1912
+public ConnectRule beamToWireMgr;45,1950
+public ConnectRule accyToBeamRule;46,1984
+public ConnectRule beamToAccyRule;47,2019
+public ConnectRule umbToWireMgrRule;48,2054
+public ConnectRule wireMgrToUmbRule;49,2091
+public ConnectRule modestyPanelToWsRule;52,2140
+public ConnectRule wsToModestyPanelRule;53,2181
+init 73,2836
+
+aeCornerSupportSystem.cm,156
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeCornerSupportSystem extends HmCornerSupportSystem : abstract 42,1802
+
+aeCornerWorksurface.cm,71
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+
+aeDeskUpScreen.cm,142
+package custom.hermanMiller.abakEnvironments;abakEnvironments37,1673
+public class AeDeskUpScreen extends AeSystemScreen : abstract 42,1755
+
+aeDeskUpScreenSupports.cm,156
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeDeskUpScreenSupport extends AeSingleScreenSupport : abstract 42,1746
+
+aeDMeetingEndSupportSystem.cm,163
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeDMeetingEndSupportSystem extends AeStraightSupportSystem : abstract 42,1817
+
+aeEggMeetingWorksurface.cm,158
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeEggMeetingWorksurface extends AeStraightWorksurface : abstract 42,1797
+
+aeElectricalSnapper.cm,152
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeElectricalSnapper extends HmElectricalSnapper : abstract 42,1784
+
+aeFloorStandingScreen.cm,149
+package custom.hermanMiller.abakEnvironments;abakEnvironments37,1673
+public class AeFloorStandingScreen extends AeSystemScreen : abstract 42,1779
+
+aeFramelessDeskUpScreen.cm,154
+package custom.hermanMiller.abakEnvironments;abakEnvironments37,1673
+public class AeFramelessDeskUpScreen extends AeFramelessScreen : abstract 39,1720
+
+aeFramelessModestyScreen.cm,155
+package custom.hermanMiller.abakEnvironments;abakEnvironments37,1673
+public class AeFramelessModestyScreen extends AeFramelessScreen : abstract 39,1720
+
+aeFramelessScreen.cm,180
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+public class AeFramelessScreen extends AeScreen : abstract 47,1921
+
+aeFramelessScreenKits.cm,155
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeFramelessScreenKit extends AeSingleScreenSupport : abstract 42,1754
+
+aeLayoutStudioDeskUpScreen.cm,160
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeLayoutStudioDeskUpScreen extends AeLayoutStudioScreen : abstract 41,1778
+
+aeLayoutStudioFloorStandingScreen.cm,167
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeLayoutStudioFloorStandingScreen extends AeLayoutStudioScreen : abstract 41,1785
+
+aeLayoutStudioModestyScreen.cm,161
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeLayoutStudioModestyScreen extends AeLayoutStudioScreen : abstract 41,1779
+
+aeLayoutStudioScreen.cm,183
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+public class AeLayoutStudioScreen extends AeScreen : abstract 47,1924
+
+aeLayoutStudioScreenKits.cm,158
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeLayoutStudioScreenKit extends AeSingleScreenSupport : abstract 42,1758
+
+aeLeg.cm,165
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+public class AeLeg extends HmLeg : abstract 48,1931
+
+aeLegTypes.cm,461
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeFixedOvalLegType extends HmFixedLegType 46,1955
+public class AeFixedTaperLegType extends HmFixedLegType 55,2143
+public class AeFixedILegType extends HmFixedLegType 64,2332
+public class AeFixedScallopLegType extends HmFixedLegType 73,2519
+public class Ae700_1100TaperLegType extends HmHAdjLegType 87,2916
+public class Ae620_820TaperLegType extends HmHAdjLegType 96,3124
+
+aeMeetingEnd.cm,147
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1671
+public class AeMeetingEnd extends AeStraightWorksurface : abstract 42,1790
+
+aeMeetingEndDShape.cm,138
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeMeetingEndDShape extends HmWsStraightShape 42,1785
+
+aeMeetingWorksurfaceSupportSystem.cm,171
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeMeetingrWorksurfaceSupportSystem extends AeStraightSupportSystem : abstract 42,1830
+
+aeModestyFloorstandingScreenSupports.cm,170
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeModestyFloorstandingScreenSupport extends AeSingleScreenSupport : abstract 42,1746
+
+aeModestyPanel.cm,136
+package custom.hermanMiller.abakEnvironments;abakEnvironments37,1673
+public class AeModestyPanel extends AeScreen : abstract 42,1765
+
+aeModestyScreen.cm,143
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeModestyScreen extends AeSystemScreen : abstract 41,1766
+
+aeMultiData.cm,112
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+
+aeOvalMeetingWorksurface.cm,112
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 41,1781
+
+aePrimaryBeamSupport.cm,314
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AePrimaryBeamSupport extends AeBeamSupport : abstract 42,1802
+public class Ae120DegBeamSupport extends AePrimaryBeamSupport : abstract 190,5427
+public class AeMeetingBeamSupport extends AePrimaryBeamSupport : abstract 244,6738
+
+aePropDefs.cm,117
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public PropDef aeQuickReleasePropDef(42,1754
+
+aeRectangularMeetingWorksurface.cm,207
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 41,1781
+public class AeRectangularMeetingWorksurface extends AeStraightWorksurface : abstract 47,1936
+
+aeRectangularWorksurface.cm,159
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeRectangularWorksurface extends AeStraightWorksurface : abstract 42,1789
+
+aeRectangularWorksurfaceSupportSystem.cm,281
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeRectangularWorksurfaceSupportSystem extends AeStraightSupportSystem : abstract 42,1834
+public class AeSecondaryReturnWorksurfaceSupportSystem extends AeStraightSupportSystem : abstract 61,2455
+
+aeRectAutoSupportPositionEnv.cm,2808
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeRectAutoSupportPositionEnv 42,1790
+    public HmWorksurface ws : copy=43,1834
+    public constructor(46,1903
+    private Bool _allowShareL;52,1993
+    extend public bool allowShareL(53,2024
+    private Bool _allowShareR;62,2284
+    extend public bool allowShareR(63,2315
+    private Bool _allowShareBack;71,2570
+    extend public bool allowShareBack(72,2604
+    private Bool _allowShareBL;80,2827
+    extend public bool allowShareBL(81,2859
+    private Bool _allowShareBR;88,3034
+    extend public bool allowShareBR(89,3066
+    private Bool _allowShareLB;96,3241
+    extend public bool allowShareLB(97,3273
+    private Bool _allowShareRB;104,3467
+    extend public bool allowShareRB(105,3499
+    private Bool _dEndShareL;113,3694
+    extend public bool dEndShareL(114,3724
+    private Bool _dEndShareR;122,3877
+    extend public bool dEndShareR(123,3907
+    private HmWorksurface _wsOnB;133,4113
+    extend public HmWorksurface wsOnB(134,4147
+    private HmWorksurface _wsOnBL;141,4275
+    extend public HmWorksurface wsOnBL(142,4310
+    private HmWorksurface _wsOnBR;149,4451
+    extend public HmWorksurface wsOnBR(150,4486
+    private HmWorksurface _wsOnL;160,4674
+    extend public HmWorksurface wsOnL(161,4708
+    private HmWorksurface _wsOnR;168,4837
+    extend public HmWorksurface wsOnR(169,4871
+    private HmWorksurface _wsOnLB;176,5000
+    extend public HmWorksurface wsOnLB(177,5035
+    private HmWorksurface _wsOnRB;184,5171
+    extend public HmWorksurface wsOnRB(185,5206
+    private HmWorksurface _wsOnLRB;194,5366
+    extend public HmWorksurface wsOnLRB(195,5402
+    private HmWorksurface _wsOnRLB;202,5543
+    extend public HmWorksurface wsOnRLB(203,5579
+    private HmCabinet _cabOnL;212,5741
+    extend public HmCabinet cabOnL(213,5772
+    private HmCabinet _cabOnR;220,5908
+    extend public HmCabinet cabOnR(221,5939
+    extend public double yOffset(235,6358
+    private Double _legOffsetLeft;243,6547
+    private Double _legOffsetLeft; private Double _legOffsetRight;243,6547
+    extend public double legOffset(244,6614
+    private Int _sharedBtoBGroupSpan;269,7267
+    extend public int sharedBtoBGroupSpan(270,7305
+    private Int _positionInBtoBGroup;297,8111
+    extend public int positionInBtoBGroup(298,8149
+    private Bool _shareLeftInCluster;307,8331
+    extend public bool shareLeftInCluster(308,8369
+    private Bool _shareRightInCluster;323,9033
+    extend public bool shareRightInCluster(324,9072
+    private Bool _clusterComputeFromLeft;339,9742
+    extend public bool clusterComputeFromLeft(340,9784
+    extend public void addUnderStructureSupports(352,10175
+    public str toS(444,15088
+    extend public void dump(452,15210
+
+aeRoundMeetingWorksurface.cm,160
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeRoundMeetingWorksurface extends AeStraightWorksurface : abstract 42,1797
+
+aeScheme.cm,130
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeScheme extends HmScheme : abstract 42,1772
+
+aeScreen.cm,130
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeScreen extends HmScreen : abstract 41,1771
+
+aeScreenEndToEndSnappingEnv.cm,144
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1671
+public class AeScreenEndToEndSnappingEnv extends AbsSnappingEnv 46,1890
+
+aeScreenPosts.cm,147
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeScreenPost extends AeSingleScreenSupport : abstract 42,1744
+
+aeScreenSupports.cm,143
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeSingleScreenSupport extends SingleScreenSupport 42,1737
+
+aeSecondaryAutoSupportPositionEnv.cm,880
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeSecondaryAutoSupportPositionEnv 42,1790
+    public HmWorksurface ws : copy=43,1839
+    public constructor(46,1908
+    private Bool _allowShareL;52,1998
+    extend public bool allowShareL(53,2029
+    private Bool _allowShareR;61,2264
+    extend public bool allowShareR(62,2295
+    private HmWorksurface _wsOnL;71,2575
+    extend public HmWorksurface wsOnL(72,2609
+    private HmWorksurface _wsOnR;79,2738
+    extend public HmWorksurface wsOnR(80,2772
+    extend public double yOffset(94,3184
+    private Double _legOffsetLeft;102,3373
+    private Double _legOffsetLeft; private Double _legOffsetRight;102,3373
+    extend public double legOffset(103,3440
+    extend public void addUnderStructureSupports(124,3898
+    public str toS(155,4824
+    extend public void dump(163,4928
+
+aeSecondaryWs.cm,148
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeSecondaryWs extends AeStraightWorksurface : abstract 42,1782
+
+aeStraightSupportSystem.cm,160
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeStraightSupportSystem extends HmStraightSupportSystem : abstract 42,1804
+
+aeStraightWorksurface.cm,148
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeStraightWorksurface extends AeWorksurface : abstract 45,1881
+
+aeSupportSystemType.cm,71
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+
+aeSystemScreen.cm,177
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+public class AeSystemScreen extends AeScreen : abstract 47,1918
+
+aeSystemScreenDragAnimation.cm,143
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeSystemScreenDragAnimation extends DragAnimation 43,1829
+
+aeSystemScreenFinishingKit.cm,150
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeSystemScreenFinishingKit extends AeSingleScreenSupport 42,1761
+
+aeSystemScreenStacker.cm,71
+package custom.hermanMiller.abakEnvironments;abakEnvironments37,1673
+
+aeTriangularMeetingWorksurface.cm,165
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeTriangularMeetingWorksurface extends AeStraightWorksurface : abstract 43,1797
+
+aeUmbilical.cm,149
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1783
+package const double radius 43,1859
+
+aeWireManager.cm,112
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 42,1782
+
+aeWireMgrInsertAnimation.cm,161
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeWireMgrInsertAnimation extends HmElectricalSnapperInsertAnimation 42,1733
+
+aeWorksurface.cm,112
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+private bool dbg_criticalIssues 41,1781
+
+aeWs120DegShape.cm,71
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+
+aeWsStraightShape.cm,348
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeMeetingOvalShape extends HmWsStraightShape 382,10554
+public class AeMeetingRoundShape extends HmWsStraightShape 471,12711
+public class AeMeetingEggShape extends HmWsStraightShape 550,14577
+public class AeWsTriangularShape extends HmWsStraightShape 616,16255
+
+aeWsSupportDetail.cm,148
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public class AeWsSupportDetail extends HmWsSupportDetail : abstract 42,1785
+
+connectTypes.cm,187
+package custom.hermanMiller.abakEnvironments;abakEnvironments37,1673
+public ConnectRule stackerToSysScreenRule;46,1867
+public ConnectRule sysScreenToStackerRule;47,1910
+init 49,1954
+
+constants.cm,1864
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public const double cAeSideLegOffset 44,1924
+public const double cAeBeamSpacing 45,1969
+public const double cAeMeetingSideLegOffset 46,2013
+public const double cAeBackGap 48,2067
+package const double cAeCutoutD 50,2107
+package const double cAeCutoutW 51,2174
+package const double cAeScallopW 52,2241
+package const double cAeScallopD 53,2310
+package const double cAeScallopOffset 54,2378
+package const double cAeBeamEndFromSide 55,2479
+package const double cAeMeetingBeamEndFromSide 56,2579
+package const double cAeModelLegHeight 57,2687
+public const str cGrainDirKey 59,2790
+public const str cGrainDirStandard 60,2834
+public const str cGrainDirOpp 61,2883
+public const double cScreenB2BShrinkAmount 68,3115
+public const double cSystemModestyScreenZOffset 71,3226
+public const double cModestyScreenZOffset 72,3283
+public const double cFloorStandingScreenZOffset 73,3334
+public const double cModestyPanelZOffset 74,3455
+public const str cConfigurationKey 77,3552
+public const str cSingleHanging 78,3606
+public const str cMultipleHanging 79,3658
+public const str cFullySlatted 80,3714
+public const str cRailTypeKey 83,3793
+public const str cRailTypeNone 84,3837
+public const str cRailTypeTopHanging 85,3878
+public const str cRailTypeFaceHanging 86,3932
+public const str cScreenTypeKey 89,4027
+public const str cScreenTypeFramedFabric 90,4075
+public const str cScreenTypeGlass 91,4135
+public const str cTrimFinishKeyLS 94,4191
+package const str cAeCapacityKey 100,4409
+package const str cAeFacingDirectionKey 101,4456
+package const str cAeClampPositionKey 102,4517
+package const double cAeSingleWireMgrBack 105,4625
+package const double cAeSingleWireMgrFront 108,4727
+package const double cAeSingleWireMgrD 110,4779
+package const double cAeWireMgrH 111,4864
+
+extension.cm,428
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+use cm: extension,37,1718
+use cm: extension, security,37,1718
+use cm: extension, security, extension.util;util37,1718
+private const str _name 43,1792
+private class AeExtension extends HmMultiCatalogExtension 49,1903
+package Extension getExtension(107,3083
+package ExtensionId getExtensionId(115,3219
+package ExtensionInfo getExtensionInfo(133,3844
+
+header.cm,331
+				    function _wireMgrCapacityAutoDcb,72,2563
+				    function _wireMgrCapacityAutoDfcb,73,2605
+				    function _wireMgrFacingDirectionAutoDcb,114,3486
+				    function _wireMgrFacingDirectionAutoDfcb,115,3535
+				    function _wireMgrClampPositionAutoDcb,148,4332
+				    function _wireMgrClampPositionAutoDfcb,149,4379
+
+init.cm,104
+package custom.hermanMiller.abakEnvironments;abakEnvironments36,1672
+public void initAbakEnv(42,1771
+
+package.cm,2120
+use cm: basic,38,1727
+use cm: basic, rs,38,1727
+use cm: basic, rs, core,38,1727
+use cm: basic, rs, core, subset,38,1727
+use cm: basic, rs, core, subset, core3D,38,1727
+use cm: basic, rs, core, subset, core3D, draw,38,1727
+use cm: basic, rs, core, subset, core3D, draw, io,38,1727
+use cm: basic, rs, core, subset, core3D, draw, io, runtime,38,1727
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win,38,1727
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw,draw38,1727
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw, abstract,38,1727
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw, abstract, format.xml,xml38,1727
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw, abstract, format.xml, io.util;util38,1727
+use cm: geometry,39,1838
+use cm: geometry, geometry2D.advanced,advanced39,1838
+use cm: geometry, geometry2D.advanced, geometry.advanced;advanced39,1838
+use cm.format: cm3D;40,1896
+use cm.abstract.office;office42,1918
+use cm.abstract.dataSymbol;dataSymbol43,1942
+use cm.abstract.dataSymbol.properties;properties44,1970
+use cm.abstract.dataSymbol.materialLegend;materialLegend45,2009
+use cm.abstract.dataSymbol.scheme;scheme46,2052
+use cm.abstract.dataSymbol.propDefs;propDefs47,2087
+use cm.abstract.surface;surface48,2124
+use cm.abstract.dataSymInterface;dataSymInterface50,2150
+use cm.abstract.dataSymInterface: database,51,2184
+use cm.abstract.dataSymInterface: database, catalog,51,2184
+use cm.abstract.dataSymInterface: database, catalog, communication;51,2184
+use custom.hermanMiller.core;core53,2253
+use custom.hermanMiller.worksurfaceCore;worksurfaceCore54,2283
+use custom.hermanMiller.worksurfaceCore.shapes;shapes55,2324
+use custom.hermanMiller.worksurfaceCore.supports;supports56,2372
+use custom.hermanMiller.electricalCore;electricalCore57,2422
+use custom.hermanMiller.accessoryCore;accessoryCore58,2462
+use custom.hermanMiller.storageCore;storageCore59,2501
+use custom.hermanMiller.screenCore;screenCore60,2538
+
+extension.xml,19
+<?xml version=1,0
+
+emea/eae120DegPostLeg.cm,117
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class Eae120DegPostLeg extends AeLeg 42,1781
+
+emea/eae120DegWorksurface.cm,135
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class Eae120DegWorksurface extends Ae120DegWorksurface 42,1787
+
+emea/eae120DegWorksurfaceSupportSystem.cm,202
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class Eae120DegWorksurfaceSupportSystem extends Ae120DegWorksurfaceSupportSystem 48,1943
+
+emea/eaeAccessFlap.cm,196
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeAccessFlapEdge extends AeAccessFlapEdge 42,1790
+public class EaeAccessFlapInset extends AeAccessFlapInset 72,2429
+
+emea/eaeBarrelMeetingWorksurface.cm,149
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeBarrelMeetingWorksurface extends AeBarrelMeetingWorksurface 43,1784
+
+emea/eaeBeamClampSupport.cm,214
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeBeamClampSupport extends AeBeamClampSupport 42,1797
+public class EaeBeamToBeamClampSupport extends AeBeamToBeamClampSupport 64,2175
+
+emea/eaeBeamEndCap.cm,291
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeBeamEndCap extends AeBeamEndCap 48,1923
+public class EaeMeetingBeamEndCap extends AeBeamEndCap 63,2167
+public class EaeDEndBeamEndCap extends AeDEndBeamEndCap 83,2537
+
+emea/eaeBeamSupport.cm,512
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaePrimaryBeamSupport extends AePrimaryBeamSupport 42,1807
+public class EaeMeetingBeamSupport extends AeMeetingBeamSupport 61,2286
+public class Eae120DegBeamSupport extends Ae120DegBeamSupport 81,2765
+public class Eae120DegBeamClampBracketSupport extends Ae120DegBeamSupport 101,3259
+public class EaeSecondaryBeamSupport extends AePrimaryBeamSupport 136,4017
+public class EaeDEndBeamSupport extends AePrimaryBeamSupport 242,6912
+
+emea/eaeBtoBWireBasket.cm,127
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeBtoBWireBasket extends EaeWireManager 43,1849
+
+emea/eaeDeskUpScreen.cm,125
+package custom.hermanMiller.abakEnvironments.emea;emea37,1673
+public class EaeDeskUpScreen extends AeDeskUpScreen 42,1766
+
+emea/eaeDeskUpScreenSupports.cm,139
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeDeskUpScreenSupport extends AeDeskUpScreenSupport 42,1759
+
+emea/eaeDMeetingEndSupportSystem.cm,190
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeDMeetingEndSupportSystem extends AeDMeetingEndSupportSystem 48,1944
+
+emea/eaeDoubleLeg.cm,517
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeDoubleLeg extends AeLeg 48,1915
+public class EaeSingleLeg extends AeLeg 194,5764
+public class EaeMeetingWorksurfaceMultiSingleLeg extends AeLeg 346,10036
+public class EaeMeetingWorksurfaceSingleLeg extends AeLeg 471,13438
+public class EaeDEndDoubleLeg extends AeLeg 599,17035
+public class EaeDoubleLegNoBlock extends AeLeg 718,20272
+public class EaeMidBeamLegBlock extends AeLeg 853,23439
+
+emea/eaeDsPDataProxy.cm,64
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+
+emea/eaeEggMeetingWorksurface.cm,143
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeEggMeetingWorksurface extends AeEggMeetingWorksurface 43,1789
+
+emea/eaeFloorStandingScreen.cm,139
+package custom.hermanMiller.abakEnvironments.emea;emea37,1673
+public class EaeFloorStandingScreen extends AeFloorStandingScreen 42,1791
+
+emea/eaeFramelessDeskUpScreen.cm,143
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeFramelessDeskUpScreen extends AeFramelessDeskUpScreen 41,1788
+
+emea/eaeFramelessModestyScreen.cm,145
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeFramelessModestyScreen extends AeFramelessModestyScreen 41,1788
+
+emea/eaeFramelessScreenKits.cm,143
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeFramelessScreenInlineKit extends AeFramelessScreenKit 42,1773
+
+emea/eaeIntermediateLeg.cm,160
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeIntermediateLeg extends AeLeg 48,1921
+
+emea/eaeLayoutStudioDeskUpScreen.cm,149
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeLayoutStudioDeskUpScreen extends AeLayoutStudioDeskUpScreen 41,1790
+
+emea/eaeLayoutStudioFloorStandingScreen.cm,163
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeLayoutStudioFloorStandingScreen extends AeLayoutStudioFloorStandingScreen 41,1797
+
+emea/eaeLayoutStudioModestyScreen.cm,151
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeLayoutStudioModestyScreen extends AeLayoutStudioModestyScreen 41,1791
+
+emea/eaeLayoutStudioScreenKits.cm,401
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeLayoutStudioInlineKit extends AeLayoutStudioScreenKit 43,1837
+public class EaeLayoutStudioInlineKitModestyToFS extends AeLayoutStudioScreenKit 58,2113
+public class EaeLayoutStudioFinishingKit extends AeLayoutStudioScreenKit 83,2564
+public class EaeLayoutStudioPostFinishingKit extends AeLayoutStudioScreenKit 98,2818
+
+emea/eaeMeetingEnd.cm,121
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeMeetingEnd extends AeMeetingEnd 42,1776
+
+emea/eaeMeetingrWorksurfaceSupportSystem.cm,205
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 46,1791
+public class EaeMeetingWorksurfaceSupportSystem extends AeMeetingrWorksurfaceSupportSystem 52,1944
+
+emea/eaeModestyFloorstandingScreenSupports.cm,274
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeModestyFloorstandingScreenSupport extends AeModestyFloorstandingScreenSupport 42,1787
+public class EaeLsFsModestyFloorstandingScreenSupport extends AeModestyFloorstandingScreenSupport 78,2742
+
+emea/eaeModestyPanel.cm,125
+package custom.hermanMiller.abakEnvironments.emea;emea37,1673
+public class EaeModestyPanel extends AeModestyPanel 42,1777
+
+emea/eaeModestyScreen.cm,127
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeModestyScreen extends AeModestyScreen 41,1778
+
+emea/eaeMultiData.cm,160
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeMultiData extends AeMultiData 48,1924
+
+emea/eaeOvalMeetingWorksurface.cm,145
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeOvalMeetingWorksurface extends AeOvalMeetingWorksurface 43,1789
+
+emea/eaeRectangularMeetingWorksurface.cm,159
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeRectangularMeetingWorksurface extends AeRectangularMeetingWorksurface 43,1789
+
+emea/eaeRectangularWorksurface.cm,145
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeRectangularWorksurface extends AeRectangularWorksurface 42,1788
+
+emea/eaeRectangularWorksurfaceSupportSystem.cm,212
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeRectangularWorksurfaceSupportSystem extends AeRectangularWorksurfaceSupportSystem 48,1944
+
+emea/eaeRoundMeetingWorksurface.cm,147
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeRoundMeetingWorksurface extends AeRoundMeetingWorksurface 43,1789
+
+emea/eaeScheme.cm,154
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeScheme extends AeScheme 48,1913
+
+emea/eaeScreenPosts.cm,184
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeSystemPost extends AeScreenPost 42,1775
+public class EaeLayoutStudioPost extends AeScreenPost 84,2598
+
+emea/eaeScreenSupports.cm,297
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeScreenSupportBeam extends EaeSingleScreenSupport 48,1868
+public class EaeFloorStandingScreenSupport extends EaeSingleScreenSupport 66,2195
+public class EaeModestyPanelSupport extends EaeSingleScreenSupport 76,2371
+
+emea/eaeSecondaryReturnWorksurfaceSupportSystem.cm,220
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private bool dbg_criticalIssues 42,1787
+public class EaeSecondaryReturnWorksurfaceSupportSystem extends AeSecondaryReturnWorksurfaceSupportSystem 48,1949
+
+emea/eaeSecondaryWs.cm,123
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeSecondaryWs extends AeSecondaryWs 42,1786
+
+emea/eaeShallowWireBasket.cm,130
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeShallowWireBasket extends EaeWireManager 43,1838
+
+emea/eaeSingleWireBasket.cm,129
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeSingleWireBasket extends EaeWireManager 42,1788
+
+emea/eaeSystemScreenFinishingKit.cm,149
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeSystemScreenFinishingKit extends AeSystemScreenFinishingKit 42,1773
+
+emea/eaeSystemScreenStacker.cm,139
+package custom.hermanMiller.abakEnvironments.emea;emea37,1673
+public class EaeSystemScreenStacker extends AeSystemScreenStacker 42,1786
+
+emea/eaeTriangularMeetingWorksurface.cm,157
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeTriangularMeetingWorksurface extends AeTriangularMeetingWorksurface 42,1788
+
+emea/eaeUmbilical.cm,119
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeUmbilical extends AeUmbilical 42,1770
+
+emea/eaeWireManager.cm,134
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public class EaeWireManager extends AeWireManager : abstract 42,1792
+
+emea/extension.cm,456
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+use cm: extension,37,1723
+use cm: extension, security,37,1723
+use cm: extension, security, extension.util;util37,1723
+private const str _name 43,1797
+package HmMultiData mdcb(54,2009
+private class EaeExtension extends HmMultiCatalogExtension 62,2150
+package Extension getExtension(136,3996
+package ExtensionId getExtensionId(144,4133
+package ExtensionInfo getExtensionInfo(162,4764
+
+emea/header.cm,150
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+package const str cEaeExtensionName 39,1725
+package const str cEaeSchemeKey 40,1798
+
+emea/init.cm,171
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+public void initEae(42,1776
+public void initEaeSchemes(50,1881
+public HmScheme defaultEaeScheme(59,2115
+
+emea/library.cm,167
+package custom.hermanMiller.abakEnvironments.emea;emea36,1672
+private Library library;42,1744
+private const symbol emea 48,1841
+public Library eaeLibrary(54,1966
+
+emea/package.cm,1974
+use cm: basic,38,1732
+use cm: basic, rs,38,1732
+use cm: basic, rs, core,38,1732
+use cm: basic, rs, core, subset,38,1732
+use cm: basic, rs, core, subset, core3D,38,1732
+use cm: basic, rs, core, subset, core3D, draw,38,1732
+use cm: basic, rs, core, subset, core3D, draw, io,38,1732
+use cm: basic, rs, core, subset, core3D, draw, io, runtime,38,1732
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win,38,1732
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw,draw38,1732
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw, abstract,38,1732
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw, abstract, format.xml,xml38,1732
+use cm: basic, rs, core, subset, core3D, draw, io, runtime, win, abstract.draw, abstract, format.xml, io.util;util38,1732
+use cm: geometry,39,1843
+use cm: geometry, geometry2D.advanced,advanced39,1843
+use cm: geometry, geometry2D.advanced, geometry.advanced;advanced39,1843
+use cm.format: cm3D;40,1901
+use cm.abstract.office;office42,1923
+use cm.abstract.dataSymbol;dataSymbol43,1947
+use cm.abstract.dataSymbol.properties;properties44,1975
+use cm.abstract.dataSymbol.materialLegend;materialLegend45,2014
+use cm.abstract.dataSymbol.scheme;scheme46,2057
+use cm.abstract.dataSymInterface;dataSymInterface48,2093
+use cm.abstract.dataSymInterface: database,49,2127
+use cm.abstract.dataSymInterface: database, catalog,49,2127
+use cm.abstract.dataSymInterface: database, catalog, communication;49,2127
+use custom.hermanMiller.core;core51,2196
+use custom.hermanMiller.worksurfaceCore;worksurfaceCore52,2226
+use custom.hermanMiller.electricalCore;electricalCore53,2267
+use custom.hermanMiller.worksurfaceCore.shapes;shapes54,2307
+use custom.hermanMiller.worksurfaceCore.supports;supports55,2355
+use custom.hermanMiller.screenCore;screenCore56,2405
+use custom.hermanMiller.abakEnvironments;abakEnvironments58,2442
+
+emea/extension.xml,19
+<?xml version=1,0

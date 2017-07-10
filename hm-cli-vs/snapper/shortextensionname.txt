@@ -1,0 +1,117 @@
+package custom.hermanMiller.abakEnvironments;
+
+
+/***************************************************************************
+ * Library translations.
+ ***************************************************************************/
+
+$##twoletteracronym##LibraryHeader {
+    english "##longname##";
+}
+
+$##twoletteracronym##PriWss {
+    english "Primary Worksurfaces";
+}
+$##twoletteracronym##SecWss {
+    english "Secondary Worksurfaces";
+}
+$##twoletteracronym##MeetingWss {
+    english "Meeting Tables";
+}
+$##twoletteracronym##MeetingEnds {
+    english "Meeting Ends";
+}
+$##twoletteracronym##Scs {
+    english "System Screens";
+}
+$##twoletteracronym##ModPa {
+    english "Modesty Panel";
+}
+$##twoletteracronym##Accs {
+    english "Accessories";
+}
+$##twoletteracronym##Wm {
+    english "Wire Management";
+}
+
+
+/***************************************************************************
+ * Scheme translations.
+ ***************************************************************************/
+
+$schemeHeader {
+    english "##longname##";
+}
+
+
+/***************************************************************************
+ * Worksurfaces
+ ***************************************************************************/
+
+$##twoletteracronym##AccessScallop {
+    english "Access scallop";
+}
+
+$##twoletteracronym##AccessFlapEdgeMounted {
+    english "Access flap - Edge mounted";
+}
+
+$##twoletteracronym##AccessFlapInsetMounted {
+    english "Access flap - Inset mounted";
+}
+
+$##twoletteracronym##GrainDir {
+    english "Grain direction";
+}
+
+
+/***************************************************************************
+ * Screens
+ ***************************************************************************/
+ 
+$screenConfiguration {
+    english "Configuration";
+}
+
+
+/***************************************************************************
+ * Wire manager
+ ***************************************************************************/
+
+$##twoletteracronym##WireManager.capacity {
+    english "Capacity";
+}
+$##twoletteracronym##WireMgrCapacity.standardCapacity {
+    english "Standard capacity";
+}
+$##twoletteracronym##WireMgrCapacity.highCapacity {
+    english "High capacity";
+}
+$##twoletteracronym##WireManager.facingDirection {
+    english "Facing direction";
+}
+$##twoletteracronym##WireMgrFacingDirection.facingForwards {
+    english "Forwards";
+}
+$##twoletteracronym##WireMgrFacingDirection.facingBackwards {
+    english "Backwards";
+}
+$##twoletteracronym##WireManager.clampPosition {
+    english "Clamp position";
+}
+$##twoletteracronym##WireMgrClampPosition.inside {
+    english "Inside";
+}
+$##twoletteracronym##WireMgrClampPosition.outside {
+    english "Outside";
+}
+
+
+/***************************************************************************
+ * Validation Message(s)
+ ***************************************************************************/
+
+$##twoletteracronym##WorksurfaceCollision {
+    english "Screen conflicts with a worksurface.";
+}
+

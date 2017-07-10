@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<extension-info>
+  <main>##package##</main>
+  <name>##longname##</name>
+  <type>catalog</type>
+  <version>8.0.7.0</version>
+  <parent>custom.hermanMiller.core.products</parent>
+  <packages>
+    <package id="##package##" />
+  </packages>
+  <extension-dependencies>
+    <dependency id="cm.core" />
+    <dependency id="cet.designer" />
+    <dependency id="cm.abstract.office" />
+    <dependency id="custom.hermanMiller.core" />
+    <dependency id="custom.hermanMiller.core.sublicenses.emea" />
+    <dependency id="custom.hermanMiller.worksurfaceCore" />
+    <dependency id="custom.hermanMiller.accessoryCore" />
+    <dependency id="custom.hermanMiller.screenCore" />
+  </extension-dependencies>
+  <security-delegates>
+    <delegate id="custom.hermanMiller.core.sublicenses.emea" />
+  </security-delegates>
+</extension-info>

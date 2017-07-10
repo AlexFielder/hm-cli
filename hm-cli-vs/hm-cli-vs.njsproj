@@ -36,9 +36,23 @@
     <Compile Include="snapper\index.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Content Include="snapper\##ConnectRules.txt" />
+    <Content Include="snapper\##Scheme.txt" />
+    <Content Include="snapper\##Worksurface.txt" />
+    <Content Include="snapper\connectTypes.txt" />
+    <Content Include="snapper\constants.txt" />
+    <Content Include="snapper\extension.txt" />
+    <Content Include="snapper\extensiondata.txt" />
+    <Content Include="snapper\header.txt" />
+    <Content Include="snapper\init.txt" />
+    <Content Include="snapper\library.txt" />
     <Content Include="snapper\nppBackup\abakEnv.rs.2017-06-05_163327.bak" />
+    <Content Include="snapper\package.txt" />
     <Content Include="snapper\Resource.txt" />
+    <Content Include="snapper\shortextensionname.txt" />
     <Content Include="snapper\Snapper.txt" />
+    <Content Include="snapper\TAGS.txt" />
+    <Content Include="snapper\TAGSRS.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="snapper\" />

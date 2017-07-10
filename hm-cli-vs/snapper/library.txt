@@ -1,0 +1,136 @@
+/** Configura CET Source Copyright Notice (CETSC)
+
+   This file contains Configura CM source code and is part of the
+   Configura CET Development Platform (CETDEV). Configura CM
+   is a programming language created by Configura Sverige AB.
+   Configura, Configura CET and Configura CM are trademarks of
+   Configura Sverige AB. Configura Sverige AB owns Configura CET,
+   Configura CM, and CETDEV.
+
+   Copyright (C) 2004 Configura Sverige AB, All rights reserved.
+
+   You can modify this source file under the terms of the Configura CET
+   Source Licence Agreement (CETSL) as published by Configura Sverige AB.
+
+   Configura Sverige AB has exclusive rights to all changes, modifications,
+   and corrections of this source file. Configura Sverige AB has exclusive
+   rights to any new source file containing material from this source file.
+   A new source file based on this source file or containing material from
+   this source file has to include this Configura CET Source Copyright Notice
+   in its full content. All changes, modifications, and corrections mentioned
+   above shall be reported to Configura Sverige AB within One Month from
+   the date that the modification occurred.
+
+   Configura CM is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   See the CETSL for more details.
+
+   You should have received a copy of the CETSL along with the CETDEV.
+   If not, write to Configura Sverige AB, Box 306, SE-581 02 Linköping, Sweden.
+   Tel +46 13377800, Fax +46 13377855,
+   Email: info@configura.com, www.configura.com
+
+   END OF CETSC
+*/
+package ##package##;
+
+
+/**
+ * Library
+ */
+private Library library;
+
+
+/**
+ * Package symbols to reduce the amount of text in this file.
+ */
+private const symbol emea = (#"##package##");
+
+
+
+
+/**
+ * Abak Environments - EMEA - Library.
+ */
+public Library ##twoletteracronym##Library() {
+    symbol pkg = (#:package);
+    
+    HmLibraryCatalogue cat(#:package, "##twoletteracronym##Library");
+    
+    if (cat.?dataCatalog and cat.?validCatalogue) {
+	Library lib = library(pkg=pkg, companyKey=cHmGroup, viewModeHook=function setHmViewModes) {
+	    container LibraryLimb root("aeLibraryHeader") {
+		limb HeaderLimb head("aeLibraryHeader", extendRight=true, compact=false);
+		
+		// Scheme
+		container LayoutGroupLimb schemes("hmSchemesGroup") {
+		    UIImageHint uiSchemeHint(showLabel=true, image=hmImage("schemeManager.png"), textSide=right);
+		    limb VoidCallbackLimb uiScheme("eaeLibrarySchemeLabel", uiSchemeHint) : callback() {
+			beginWaitCursor();
+			if (!autoCrashing) {
+			    showHmConfigurator(session.mainWindow, default=true, hmScheme(cEaeSchemeKey));
+			}
+			endWaitCursor();
+		    }
+		}
+		
+		// Primary Worksurfaces
+		container LibraryLimb ##twoletteracronym##PriWss("##twoletteracronym##PriWss") {
+		    //limb HmSnapperLimb aeReWs(key="EaeRectangularWorksurface", cat=cat, image=aeIcon("AeReWs.png"), pkg=emea);
+		    //limb HmSnapperLimb aeSecWs(key="EaeSecondaryWs", cat=cat, image=aeIcon("AeSecWs.png"), pkg=emea);
+		    //limb HmSnapperLimb ae120Ws(key="Eae120DegWorksurface", cat=cat, image=aeIcon("Ae120Ws.png"), pkg=emea);
+		}
+		
+		// Meeting Tables
+		container LibraryLimb ##twoletteracronym##MeetingWss("##twoletteracronym##MeetingWss") {
+		    //limb HmSnapperLimb aeMeWsRe(key="EaeRectangularMeetingWorksurface", cat=cat, image=aeIcon("AeReMeWs.png"), pkg=emea);
+		    //limb HmSnapperLimb aeMeWsOv(key="EaeOvalMeetingWorksurface", cat=cat, image=aeIcon("AeOvMeWs.png"), pkg=emea);
+		    //limb HmSnapperLimb aeMeWsBa(key="EaeBarrelMeetingWorksurface", cat=cat, image=aeIcon("AeBaMeWs.png"), pkg=emea);
+            //limb NewlineHint n0();
+		    //limb HmSnapperLimb aeMeWsRo(key="EaeRoundMeetingWorksurface", cat=cat, image=aeIcon("AeMeWsRo.png"), pkg=emea);
+		    //limb HmSnapperLimb aeMeWsTri(key="EaeTriangularMeetingWorksurface", cat=cat, image=aeIcon("AeMeWsTri.png"), pkg=emea);
+		    //limb HmSnapperLimb aeMeWsEgg(key="EaeEggMeetingWorksurface", cat=cat, image=aeIcon("AeMeWsEgg.png"), pkg=emea);
+		}
+
+		// Meeting Ends
+		container LibraryLimb ##twoletteracronym##MeetingEnds("##twoletteracronym##MeetingEnds") {
+		    //limb HmSnapperLimb aeDWs(key="EaeMeetingEnd", cat=cat, image=aeIcon("AeDWs.png"), pkg=emea);
+		}
+
+		// ##twoletteracronym## System Screens
+		container LibraryLimb ##twoletteracronym##Scs("##twoletteracronym##Scs") {
+		    //limb HmSnapperLimb aeMoSc(key="EaeModestyScreen", cat=cat, image=aeIcon("AeSysScMo.png"), pkg=emea);
+		    //limb HmSnapperLimb aeDUSc(key="EaeDeskUpScreen", cat=cat, image=aeIcon("AeSysScDU.png"), pkg=emea);
+		    //limb HmSnapperLimb aeFSc(key="EaeFloorStandingScreen", cat=cat, image=aeIcon("AeSysScF.png"), pkg=emea);
+		    //limb HmSnapperLimb aeMoPa(key="EaeModestyPanel", cat=cat, image=aeIcon("AeMoPa.png"), pkg=emea);
+		    //limb HmSnapperLimb aeScSt(key="EaeSystemScreenStacker", cat=cat, image=aeIcon("AeScSt.png"), pkg=emea);
+		}
+		
+		// Wire Management
+		container LibraryLimb ##twoletteracronym##Wm("##twoletteracronym##Wm") {
+		    //limb HmSnapperLimb aeWmBSingle(key="EaeSingleWireBasket", cat=cat, image=aeIcon("AeWireBasketSingle.png"), pkg=emea);
+		    //limb HmSnapperLimb aeWmBShallow(key="EaeShallowWireBasket", cat=cat, image=aeIcon("AeWireBasketShallow.png"), pkg=emea);
+		    //limb HmSnapperLimb aeWmBtoB(key="EaeBtoBWireBasket", cat=cat, image=aeIcon("AeWireBasketBtoB.png"), pkg=emea);
+		    //limb HmSnapperLimb aeUmb(key="EaeUmbilical", cat=cat, image=aeIcon("AeUmb.png"), pkg=emea);
+		}
+		
+	    }
+	};
+	library = lib;
+    }
+    
+    if (!library) library = library = downloadingLibrary((#:package).str);
+    if (library) {
+	library.keywordSearchRootPkg = cHmCorePkg;
+	library.keywordSearchRootKey = cHmGroup;
+    }
+    
+    if (developMode) {
+	pln("Returning the "#c##twoletteracronym##eExtensionName#" library.");
+    }
+    
+    return library;
+}
+
+

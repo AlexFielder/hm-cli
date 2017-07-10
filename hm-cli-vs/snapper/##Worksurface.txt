@@ -1,0 +1,1642 @@
+/** Configura CET Source Copyright Notice (CETSC)
+
+   This file contains Configura CM source code and is part of the
+   Configura CET Development Platform (CETDEV). Configura CM
+   is a programming language created by Configura Sverige AB.
+   Configura, Configura CET and Configura CM are trademarks of
+   Configura Sverige AB. Configura Sverige AB owns Configura CET,
+   Configura CM, and CETDEV.
+
+   Copyright (C) 2004 Configura Sverige AB, All rights reserved.
+
+   You can modify this source file under the terms of the Configura CET
+   Source Licence Agreement (CETSL) as published by Configura Sverige AB.
+
+   Configura Sverige AB has exclusive rights to all changes, modifications,
+   and corrections of this source file. Configura Sverige AB has exclusive
+   rights to any new source file containing material from this source file.
+   A new source file based on this source file or containing material from
+   this source file has to include this Configura CET Source Copyright Notice
+   in its full content. All changes, modifications, and corrections mentioned
+   above shall be reported to Configura Sverige AB within One Month from
+   the date that the modification occurred.
+
+   Configura CM is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   See the CETSL for more details.
+
+   You should have received a copy of the CETSL along with the CETDEV.
+   If not, write to Configura Sverige AB, Box 306, SE-581 02 Linköping, Sweden.
+   Tel +46 13377800, Fax +46 13377855,
+   Email: info@configura.com, www.configura.com
+
+   END OF CETSC
+*/
+package ##package##;
+
+/**
+ * Use this to turn on/off critical issues printouts.
+ */
+private bool dbg_criticalIssues = (developMode and !danan) or autoCrashing;
+
+
+/**
+ * Abak Environments - Worksurface - Base class.
+ */
+public class ##twoletteracronym##Worksurface extends HmWorksurface : abstract {
+
+    /**
+     * Wire manager connection line, used for wire management trays and baskets.
+     */
+    private Connector _wireMgrConnector;
+
+
+    /**
+     * Modesty panel connect line
+     */
+    private ConnectLine _modestyPanelCLine;
+
+
+    /**
+     * edge screen connect lines
+     */
+    private ConnectLine _leftEdgeScreenCLine;
+    private ConnectLine _rightEdgeScreenCLine;
+
+    
+    /**
+     * Beam Connector Line.
+     * used for generic beam connections.
+     */
+    private ConnectLine _beamConnector;
+    extend public ConnectLine beamConnector=(ConnectLine n) { return _beamConnector = n; }
+    extend public ConnectLine beamConnector() { return _beamConnector; }
+
+    
+    /**
+     * Quick release.
+     */
+    private bool _quickRelease = false;
+    extend public bool quickRelease=(bool n) { return _quickRelease = n; }
+    extend public bool quickRelease() { return _quickRelease; }
+
+    
+    /***********************************************************************
+     * Initiation
+     ***********************************************************************/
+
+    /**
+     * Constructor.
+     */
+    public constructor() {
+	super(..);
+    }
+
+
+    /**
+     * Initiate snapper.
+     */
+    public void initSnapper() {
+	super();
+	initWireMgrConnector();
+	initBeamConnector();
+	initExtraScreenLines();
+	edgeProfileChanged();
+    }
+
+    
+    /**
+     * Get the name of this product series.
+     */
+    public str productSeriesName() {
+	return c##shortname##ProductSeriesName;
+    }
+    
+    
+    /***********************************************************************
+     * Field and parameter access handling.
+     ***********************************************************************/
+
+    /**
+     * Set the wire management connector of this snapper.
+     */
+    extend public Connector wireMgrConnector=(Connector value) {
+	_wireMgrConnector = value;
+	return _wireMgrConnector;
+    }
+
+    
+    /**
+     * Get the wire management connector of this snapper.
+     */
+    extend public Connector wireMgrConnector() {
+	return _wireMgrConnector;
+    }
+
+
+    /**
+     * Set the modesty panel connector of this snapper.
+     */
+    extend public ConnectLine modestyPanelCLine=(ConnectLine n) {
+	return _modestyPanelCLine = n;
+    }
+
+    
+    /**
+     * Get the wire management connector of this snapper.
+     */
+    extend public ConnectLine modestyPanelCLine() {
+	return _modestyPanelCLine;
+    }
+
+    
+    /**
+     * Get a new instance of the default support system of this worksurface.
+     */
+    public HmSupportSystem defaultSupportSystem() : abstract {
+	return null; // FIXME Run super when all supports are defined in the ws.
+    }
+
+    
+    /**
+     * Get a new instance of the default leg type of this.
+     */
+    // public HmLegType defaultLegType() { return AeFixedScallopLegType(); } //FIXME
+    
+    
+    /**
+     * Can this worksurface have a wireway?
+     */
+    public bool canHaveWireway(Object env=null) { return true; }
+    
+    
+    /**
+     * Can this worksurface have an access flap?
+     */
+    extend public bool canHaveAccessFlap(Object env=null) { return false; }
+    
+    // FIXME
+    /**
+     * Wireway domain of this worksurface.
+     */
+    /**
+	public SubSet wirewayDomain(Object env=null) {
+	ClassSubSet ss();
+	ss << HmAccessCutoutNone;
+	if (canHaveWireway(env)) {
+	    ss << AeAccessScallop;
+	    if (canHaveAccessFlap(env)) {
+		ss << AeAccessFlapEdgeMounted;
+		ss << AeAccessFlapInsetMounted;
+	    }
+	}
+	return ss;
+    }
+	*/
+    
+    
+    /**
+     * Does this worksurface have an access flap?
+     */
+	/** FIXME
+    public bool hasWireway() {
+	if (wireway as AeAccessScallop) return false;
+	return super(..);
+    }
+    */
+    
+    /**
+     * Get the offset from the side for the leg on the input side of this.
+     */
+    extend public double getLegOffset(bool leftSide) {
+	double output = 0;
+	
+	if (leftSide) {
+	    output = cAeSideLegOffset;
+	} else {
+	    output = dimension("b") - cAeSideLegOffset;
+	}
+	
+	return output;
+    }
+    
+    
+    /**
+     * Use height snap?
+     */
+    public bool useHeightSnap() { return hasFixedLegs() ? false : true; }
+    
+    
+    /**
+     * Default height of this worksurface.
+     */
+    public double defaultHeight() {
+	double output;
+	if (!hasFixedLegs()) {
+	    output = 730mm;
+	} else if (HmLegType lt = legType) {
+	    output = lt.heightRange.?closest(minDouble).safeDouble;
+	    if (edgeProfileCode() == "S1") { // 18mm thick top
+		// Make default height 7mm less (i.e. 723mm)
+		output -= 7mm;
+	    }
+	}
+	return output;
+    }
+    
+    
+    /**
+     * DefaultEdge - surface bordering edge.
+     */
+    public HmWorksurfaceEdge defaultEdge() {
+	return Hm2mmForcedEdgeband(thickness);
+    }
+
+
+    /**
+     * DefaultThickness.
+     */
+    public double defaultThickness() {
+	return 18mm;
+    }
+    
+    
+    /**
+     * Get a new instance of the default support application of this worksurface.
+     */
+    public HmSupportApplication defaultSupportApplication() {
+	return HmSharedBackApplication();
+    }
+    
+    
+    /**
+     * Return the root part of the product code for leg, from the leg type
+     */
+	/** FIXME
+    extend public str legTypeRootCode() {
+	str output;
+	HmLegType lt = legType;
+	if (lt as AeFixedOvalLegType) {
+	    output = "AKA";
+	} else if (lt as AeFixedTaperLegType) {
+	    output = "AKB";
+	} else if (lt as Ae620_820TaperLegType) {
+	    output = "AKC";
+	} else if (lt as AeFixedILegType) {
+	    output = "AKD";
+	} else if (lt as AeFixedScallopLegType) {
+	    output = "AKF";
+	} else if (dbg_criticalIssues) {
+	    pln(class, ".legTypeRootCode - Error: Unsupported leg type [", lt,"]. Returning ", output, ".");
+	    if (autoCrashing) bug;
+	}
+	return output;
+    }
+	*/
+
+
+    /**
+     * Update the supports of this worksurface.
+     */
+    public void updateSupports() {
+        super(..);
+	updateScreenSupports();	//<-- directly reliant on ws supports
+    }
+    
+    
+    /**
+     * Get the edge profile code
+     */
+    extend public str edgeProfileCode() {
+	str res = getValueFromData(data(), edgeProfileIdx());
+	return res;
+    }
+
+
+    /**
+     * Pipe translation.
+     */
+	/** FIXME
+    public str pipeTranslation(str key, PropObj pipe, Object env=null) {
+	if (pipe as AeScheme) {
+	    if (key in {cHmLegTypePropDefKey, cHmWWPropDefKey, aeQuickReleaseKey}) {
+		return "EaeRectangularWorksurface." #key;
+	    }
+	}
+	return super(..);
+    }
+    */
+    
+    /***********************************************************************
+     * Domains.
+     ***********************************************************************/
+    
+    /**
+     * Leg type domain of this worksurface.
+     */
+	/** FIXME
+    public SubSet legTypeDomain(Object env) {
+        ClassSubSet ss();
+	
+	//ss << AeFixedOvalLegType;
+	ss << AeFixedTaperLegType;
+	ss << Ae620_820TaperLegType;
+	//ss << AeFixedILegType;
+	ss << AeFixedScallopLegType;
+	
+	return ss;
+    }
+    */
+    
+    /**
+     * Standard domain / Full length domain.
+     * Returns the full range of available sizes of the edge with the input id.
+     * FIXME Rename fullLengthDomain.
+     */
+    public SubSet stdDomain(str id) {
+	SubSet output;
+	
+	if (id in {"ls", "rs", "s"}) {
+	    output = depthDomain(id);
+	    
+	} else if (id == "b") {
+	    str key = "default";
+	    output = hmDomain(data(key), widthIdx(key));
+	    if (output) output = restrictedDomain(id, output);
+			  
+	} else if (id == "h") { // FIXME 'h' isn't an edge.
+	    output = elevationRange();
+	    
+	} else {
+	    output = super(..);
+	    
+	}
+	
+	return output;
+    }
+
+
+    /**
+     * Get the restricted (limited) domain for the side with the input id
+     */
+    public SubSet restrictedDomain(str id, SubSet domain) {
+	
+	if (id == "b") {
+	    if (wireway as ##twoletteracronym##AccessFlapEdgeMounted) {
+		domain = removeMembersLessThan(domain, 1.2m, eqTo=false);
+		
+	    } else if (wireway as ##twoletteracronym##AccessFlapInsetMounted) {
+		domain = removeMembersLessThan(domain, 1.2m, eqTo=false);
+		
+	    }
+	}
+
+	return domain;
+    }
+    
+    
+    
+    /**
+     * Depth domain.
+     * Depth is determined by the root product code so there will not be a domain
+     * we can get from the data, we need a function to provide the depth domain
+     * for each snapper
+     */
+    extend public SubSet depthDomain(str id) {
+	return null;
+    }
+    
+
+    /**
+     * Height adjustable elevation range.
+     */
+    public SubSet heightAdjRange() {
+	if (!hasFixedLegs()) {
+	    return legType.heightRange;
+	}
+	return DoubleEnum(worksurfaceTop);
+    }
+    
+    
+    /**
+     * Support application domain.
+     */
+    public ObjectSubSet supportApplicationDomain() {
+	return ObjectSubSet([Class: HmSharedBackApplication, HmFreeStandingApplication]);
+    }
+    
+    
+    /***********************************************************************
+     * Indices.
+     ***********************************************************************/
+    
+    /**
+     * Depth index.
+     * FIXME We should move to using group codes instead of indices.
+     */
+    extend public Object depthIdx(str key="default") {
+	return null;
+	//return cDsPDataIndex0;
+    }
+    
+    
+    /**
+     * Width index.
+     * FIXME We should move to using group codes instead of indices.
+     */
+    extend public Object widthIdx(str key="default") {
+	return cDsPDataIndex0;
+    }
+    
+    
+    /**
+     * Dimension index (or group code) of the edge with the input id on the sub-data with the input key.
+     */
+    public Object dimensionIdx(str id, str key="default") {
+	if (key == "default") {
+	    if (id == "b") return widthIdx("default");
+	    if (id in ["s", "ls", "rs"]) depthIdx("default");
+	}
+	return super(..);
+    }
+    
+    
+    /**
+     * Material index.
+     * FIXME We should move to using group codes instead of indices.
+     */
+    public Object materialIdx() { return cDsPDataIndex3; }
+    
+    
+    /**
+     * Edge profile index.
+     * FIXME We should move to using group codes instead of indices.
+     */
+    extend public Object edgeProfileIdx() { return cDsPDataIndex1; }
+    
+    
+    /**
+     * Access detail index.
+     * FIXME We should move to using group codes instead of indices.
+     */
+    extend public Object accessDetailIdx() { return cDsPDataIndex2; }
+
+
+    /**
+     * wireway key
+     */
+    extend public str wirewayFeatureKey() { return "1006"; }
+    
+    
+    /***********************************************************************
+     * Properties
+     ***********************************************************************/
+    
+    /**
+     * Properties
+     */
+    public SnapperProperty[] properties() {
+	SnapperProperty[] props();
+	
+	props += super(..);
+	
+	// Remove access detail option
+	str fKey = convertToDataKey(data, accessDetailIdx);
+	int ik = -1;
+	for (p in props, index=i) {
+	    if (p.k == fKey) {
+		ik = i;
+		break;
+	    }
+	}
+	if (ik >= 0) {
+	    props.remove(ik);
+	}
+	
+	return props;
+    }
+    
+    
+    /**
+     * ALWAYS put new ones after super call.
+     */
+    public void appendPropDefs(PropDefs defs) {
+	super(defs);
+	defs.put(aeQuickReleasePropDef());
+    }
+    
+    
+    /**
+     * Wireway changed
+     * "Access detail" is one of the options, not a part of the root product code.
+     */
+    public void wireWayChanged(HmAccessCutoutType previous) {
+	super(..);
+	if (wireway != previous) {
+	    setValueToData(data("default"), accessDetailIdx(), wirewayCode());
+	    invalidate();
+	}
+    }
+    
+
+    /**
+     * Get the wire way code given the current wire way selection.
+     */
+	/** FIXME
+    extend public str wirewayCode() {
+	str output;
+	HmAccessCutoutType act = wireway;
+	if (act as HmAccessCutoutNone) output = "N";
+	else if (act as AeAccessScallop) output = "S";
+	else if (act as AeAccessFlapEdgeMounted) output = "A";
+	else if (act as AeAccessFlapInsetMounted) output = "B";
+	else if (dbg_criticalIssues) {
+	    pln(class, ".wirewayCode - Error: Unsupported wireway [", act,"]. Returning ", output, ".");
+	    if (autoCrashing) bug;
+	}
+	return output;
+    }
+    */
+    
+    /**
+     * Try to set a (quick) property.
+     */
+	/** FIXME
+    public bool trySetProperty(SetSnapperPropertyEnv env) {
+	bool success = super(..);
+
+	if (success) {
+	    if (?DsSnapperProperty dsp = env.property) {
+		str key = dsp.k;
+		
+		if (key == aeEdgeProfileKey) {
+		    // Must be done after the profile has been updated (else the domain is wrong).
+		    edgeProfileChanged();
+		    if (env as DsSetSnapperPropertyEnv) env.invalidateDialog = true;
+
+		} else if (key == cHmAppPropDefKey) {
+		    if (freestanding) {
+			if (?AeMeetingEnd mEnd = getWorksurfaceOnEdge("ls")) mEnd.breakAllConnections();
+			if (?AeMeetingEnd mEnd = getWorksurfaceOnEdge("rs")) mEnd.breakAllConnections();
+		    }
+		}
+	    }
+	}
+	invalidateSupports();
+	return success;
+    }
+	*/
+
+
+    /**
+     * Update when the edge profile has been changed
+     */
+    extend public void edgeProfileChanged() {
+	double oldThk = thickness;
+	double newThk;
+	if (edgeProfileCode() == "S1") {
+	    newThk = 18mm;
+	} else {
+	    newThk = 25mm;
+	}
+	if (oldThk != newThk) {
+	    setThickness=newThk;
+	    edge = Hm2mmForcedEdgeband(newThk);
+	}
+	verifyWireWay();
+	
+	buildPath(true);
+	invalidate();
+    }
+
+
+    /**
+     * Leg type has been changed to a new value.
+     * Should be called once when the leg type has been changed on this worksurface.
+     */
+    public void legTypeChanged(HmLegType previous) {
+	verifyWorksurfaceTop();
+
+	// Make sure the supports are the way the should after this change.
+	invalidateSupports();
+	updateSupportData(true);
+
+	// Make sure the screens align after the performed changes. The connect lines that screens connect can be affected by the change of legType.
+	for (screen in connectedScreens()) {
+	    screen.?updateScreen();
+	}
+
+	// Refresh all the connector symbols on this worksurface
+	// Particularly, to hide / show the height stretch arrow
+	if (this.isActive) {
+	    space.updateConnectors(this);
+	}
+	alignAllSnapped(removeFromBsp=true);
+
+	// Make sure the side bar displays the current state of this.
+	invalidateSidebarProps();
+    }
+    
+    
+    /**
+     * Push props from 'z' to this if applicable.
+     */
+    public bool pushProps(PropObj z, Object env=null) {
+	if (z as AeScheme) {
+	    // Set _supportMaterial from the material being pushed from the scheme
+	    /* CUT THIS OUT  Wed Apr 26 16:01:09 2017 /micch
+	       if (Material m = z.getMaterialFromScheme(supportMaterialKey)) {
+	       _supportMaterial = m;
+	       }
+	       * CUT THIS OUT /micch */
+	}
+	bool res = super(z, env);
+	return res;
+    }
+    
+    
+    /**
+     * Put value into the property definitions of this snapper.
+     */
+    public Object put(str k, Object v, Object env=null) {
+	Object ov = get(k, env);
+	
+	if (k == "legType") {
+	    if (v as Class) {
+	        if (SubSet ss = legTypeDomain(null)) {
+		    if (v !in ss.?members) return null;
+		}
+	    }
+	}
+	
+	Object o = super(..);
+        
+	if (k == aeQuickReleaseKey) {
+	    invalidateSupports();
+	}
+	return o;
+    }
+    
+
+    /***********************************************************************
+     * Support material - Testing a new system. Old code disabled - johse
+     ***********************************************************************/
+    
+    /**
+     * Material domain of the supports of this worksurface.
+     */
+    public SubSet supportMaterialDomain() { return null; }
+
+    
+    /**
+     * Get the support material of this worksurface.
+     * johse - Working on a new, more dynamic and light weight, system for this.
+     */
+    public Material getSupportMaterial(DsPData data=null) { return null; }
+
+    
+    /**
+     * Set the support material of this worksurface.
+     * johse - Working on a new, more dynamic and light weight, system for this.
+     */
+    public void setSupportMaterial(Material m, DsPDataOption option=null) {}
+
+    
+    /**
+     * Get a new instance of the default support material of this worksurface.
+     */
+    public Material defaultSupportMaterial() { return null; }
+
+    
+    /**
+     * Should feature(featureKey) be changeable in calc. dialog?
+     */
+    public bool allowFeatureChangeInCalcDialog(str featureKey, DsPDataProxyEnv dsEnv) {
+	// Consider allowing some of the support options to be changed.
+	// Disabling the change of all understructure options in the BOM.
+	if (?HmWorksurfaceSupports supports = support) {
+	    if (featureKey in supports.allFeatureCodes()) return false;
+	}
+        if (featureKey == wirewayFeatureKey) return false; //TODO: why does AE need this and no other tables?
+	
+	return super(..);
+    }
+    
+    
+    /***********************************************************************
+     * Dimensions
+     ***********************************************************************/
+    
+    /**
+     * Does this worksurface have legs with a fixed height?
+     * Returns true if the legs of this worksurface are non-adjustable.
+     */
+    public bool hasFixedLegs() {
+	if (legType as HmFixedLegType) return true;
+	return false;
+    }
+    
+    
+    /**
+     * allowSnapAtDifferantHeights
+     * returns whether 2 worksurfaces are allowed to snap together if their heights are differant
+     */
+    public bool allowSnapAtDifferantHeights() {
+	return false;
+    }
+
+
+    /***********************************************************************
+     * Connectors
+     ***********************************************************************/
+
+    /**
+     * Add connectors
+     */
+    public void connectors(ConnectorCollection connectors) {
+	super(connectors);
+	connectors <<? wireMgrConnector;
+	connectors <<? modestyPanelCLine;
+	connectors <<? leftEdgeScreenCLine;
+	connectors <<? rightEdgeScreenCLine;
+	connectors <<? beamConnector;
+    }
+
+
+    /**
+     * Update the connectors
+     */
+    public void updateConnectors() {
+	super();
+	updateWireMgrConnectors();
+	updateExtraScreenConnectors();
+	updateBeamConnectors();
+    }
+
+
+    /**
+     * Update all wire management tray connectors.
+     */
+    extend public void updateWireMgrConnectors() {
+	if (wireMgrConnector as ConnectLine) {
+	    line defLine = defaultWireManagementConnectorLine();
+	    wireMgrConnector.setPos(defLine.p0);
+	    wireMgrConnector.setLength(defLine.length());
+	}
+    }
+
+
+    /**
+     * Update Extra screen connectlines
+     */
+    extend public void updateExtraScreenConnectors() {
+        if (modestyPanelCLine) {
+	    line defLine = defaultModestyPanelCLLine;
+	    modestyPanelCLine.setPos(defLine.p0);
+	    modestyPanelCLine.setEndPos(defLine.p1);
+	    
+	} else modestyPanelCLine = defaultModestyPanelCL;
+
+	if (leftEdgeScreenCLine) {
+	    line defLine = defaultLeftEdgeScreenCLLine;
+	    leftEdgeScreenCLine.setPos(defLine.p0);
+	    leftEdgeScreenCLine.setEndPos(defLine.p1);
+	    
+	} else leftEdgeScreenCLine = defaultEdgeScreenCL(true);
+
+	if (rightEdgeScreenCLine) {
+	    line defLine = defaultRightEdgeScreenCLLine;
+	    rightEdgeScreenCLine.setPos(defLine.p0);
+	    rightEdgeScreenCLine.setEndPos(defLine.p1);
+	    
+	} else rightEdgeScreenCLine = defaultEdgeScreenCL(true);
+    }
+    
+    
+    /**
+     * Connect line aligns.
+     */
+    public <bool, bool, bool> connectLineAligns(ConnectLine s, Connector c, double t) {
+	//stops the screens snapping to edges on the back
+	if (s == screenCL) {
+	    if (?HmScreen screen = c.snapper) 
+	      if (getWorksurfaceOnEdge("b") and screen.shrinkOnBack2Back and screen.wDomain) {
+		  if (screen.wDomain.closestPreceeding(dimension("b") - cScreenB2BShrinkAmount).safeDouble == screen.w)
+		    return <false, true, false>;
+	      }
+	    
+	    return <false, false, false>;
+	}
+	
+	return super(..);
+    }
+    
+    
+    /**
+     * init the extra screen CLs
+     */
+    extend public void initExtraScreenLines() {
+	leftEdgeScreenCLine = defaultEdgeScreenCL(left=true);
+	rightEdgeScreenCLine = defaultEdgeScreenCL(left=false);
+	modestyPanelCLine = defaultModestyPanelCL();
+    }
+    
+    
+    /**
+     * set the left edge CL
+     */
+    extend public ConnectLine leftEdgeScreenCLine=(ConnectLine n) {
+	return _leftEdgeScreenCLine = n;
+    }
+
+
+    /**
+     * set the right edge CL
+     */
+    extend public ConnectLine rightEdgeScreenCLine=(ConnectLine n) {
+	return _rightEdgeScreenCLine = n;
+    }
+
+
+    /**
+     * get the left edge CL
+     */
+    extend public ConnectLine leftEdgeScreenCLine() {
+	return _leftEdgeScreenCLine;
+    }
+
+
+    /**
+     * get the right edge CL
+     */
+    extend public ConnectLine rightEdgeScreenCLine() {
+	return _rightEdgeScreenCLine;
+    }
+
+
+    /**
+     * the default edge screen CLs
+     */
+    extend public ConnectLine defaultEdgeScreenCL(bool left) {
+        line cLine = left ? defaultLeftEdgeScreenCLLine : defaultRightEdgeScreenCLLine;
+	ConnectLine output(this, cLine.p0, cLine.p1);
+	output.setRule(wsToScreenRule);
+	return output;
+    }
+
+
+    /**
+     * Get the left Edge screen connect line's defining line.
+     */
+    extend public line defaultLeftEdgeScreenCLLine() {
+	double d = getPreferredDimension("ls");
+	return line((0, -d, worksurfaceTop), (0, 0, worksurfaceTop));
+    }
+
+    
+    /**
+     * Get the right Edge screen connect line's defining line.
+     */
+    extend public line defaultRightEdgeScreenCLLine() {
+	double w = getPreferredDimension("b");
+	double d = getPreferredDimension("rs");
+	return line((w, 0, worksurfaceTop), (w, -d, worksurfaceTop));
+    }
+
+    
+    /**
+     * Get all beam connectors
+     */
+    extend public Connector{} getBeamConnectors() {
+	Connector{} cs();
+	cs << beamConnector;
+	return cs;
+    }
+
+
+    /***********************************************************************
+     * Connections
+     ***********************************************************************/
+
+    /**
+     * The connector 'c0' of this snapper was disconnected from the connector
+     * 'c1' in another snapper. The 'wasSnapped' and 'wasAttached' booleans 
+     * indicates the connection type.
+     */
+    public void disconnected(Connector c0, Connector c1,
+			     bool wasSnapped, bool wasAttached) {
+	super(..);
+	if (c0 as WorksurfaceConnectLine) {
+
+	    //need to make sure that the baskets are still valid
+	    for (snapper in wireMgrConnector.connectedSnappers) {
+		if (?AeWireManager wireManager = snapper)
+		  if (wireManager.isDouble) wireManager.breakAllConnections();
+	    }
+	}
+    }
+
+    
+    /**
+     * connector c0 was connected to c1 
+     */
+	/** FIXME
+    public void connected(Connector c0, Connector c1,
+			  bool wasSnapped, bool wasAttached) {
+	super(..);
+	
+        if (?AeWorksurface ws = c1.snapper) {
+	    screenCL.join(ws.screenCL);
+	    updateScreenSupports();
+	    if (?AeWorksurface bWs = getWorksurfaceOnEdge("b")) bWs.updateScreenSupports();
+	}
+
+	if (c1.snapper in HmBaseScreen) updateSupports;
+    }
+	*/
+
+    
+    /**
+     * Adjust Beam Accessories.
+     */
+	/**
+    extend public void adjustAccessories(WorksurfaceConnectLine cl) {
+	for (acc in connectedBeamSnappers) {
+	    if (acc as AeBeamAccessory) acc.updateDuringWsStretch(acc.mainConnector, cl);
+	    if (acc as AeElectricalSnapper) acc.updateDuringWsStretch(acc.snap, cl);
+	}
+    }
+	*/
+
+
+    /**
+     * returns true if there is a screen blocking the intermediate block between b2b worksurfaces
+     */
+    extend public bool isScreenBlockingIBlock(bool left) {
+	for (screen in connectedScreens) {
+	    for (sp in screen.worksurfaceCL.snapPositions) {
+		if (sp.c == screenCL) {
+		    if (left) {
+			if (sp.d - screen.w > 0 and sp.d - screen.w < 6.37cm) return true;
+		    } else {
+			if (sp.d < screenCL.length and sp.d > screenCL.length - 6.37cm) return true;
+		    }
+		}
+	    }
+	}
+	
+	if (?AeWorksurface bWs = getWorksurfaceOnEdge("b")) {
+	    for (screen in bWs.connectedScreens) {
+		for (sp in screen.worksurfaceCL.snapPositions) {
+		    if (sp.c == bWs.screenCL) {
+			if (left) {
+			    if (sp.d - screen.w > 0 and sp.d - screen.w < 10cm) return true;
+			} else {
+			    if (sp.d < bWs.screenCL.length and sp.d > bWs.screenCL.length - 10cm) return true;
+			}
+		    }
+		}
+	    }
+	}
+
+	return false;
+    }
+
+    
+    /**
+     * Allow Multi placement of chairs.
+     */
+    public bool allowMultiChairPlacement() { return !isControlKeyDown; }
+
+    
+    /**
+     * Chair spacing.
+     */
+    public double multiChairSpacing(Snapper chair) { return 1.5*avgChairW; }
+    
+    
+    /**********************************************************************
+     * Snapping
+     **********************************************************************/    
+
+    public bool allowAttach(Connector a, Connector s) {
+	
+	if (a and s) {
+	    
+	    //Wire manager is not allowed together with any beam accessories
+	    if (s.snapper in AeWireManager) {
+		if (a == wireMgrConnector) {
+		    for (snap in beamConnector.?connectedSnappers) {
+			if (snap as AeUmbilical) return false;
+		    }
+		}
+	    }
+	    
+	    if (a == wireMgrConnector and wireMgrConnector.isConnected) return false;
+	}
+
+	return super(..);
+    }
+
+    
+    /**
+     * Is connector 'c' visible.
+     */
+    public bool isVisible(Connector c) {
+	if (c) {
+	    if (c == wireMgrConnector) return false;
+	    if (c == modestyPanelCLine) return false;
+	    if (c == leftEdgeScreenCLine) return false;
+	    if (c == rightEdgeScreenCLine) return false;
+	    if (c == beamConnector) return false;
+	}
+	return super(..);
+    }
+    
+    
+    /**
+     * Allow wire manager connection on connector c.
+     */
+    extend public bool allowWireMgrConnection(Connector c) { return false; }
+
+
+    /**
+     * Force double wire manager.
+     */
+    extend public bool forceDoubleWireMgr() { return false; }
+
+
+    /**
+     * Initiate the wire management connector of this worksurface.
+     */
+    extend public void initWireMgrConnector() {
+	setupWireMgrConnectors();
+    }
+
+
+    /**
+     * Setup all wire manager connectors of this worksurface.
+     */
+    extend public void setupWireMgrConnectors() {
+	line defLine = defaultWireManagementConnectorLine();
+	wireMgrConnector = ConnectLine(this, defLine.p0, 270deg, defLine.length());
+	wireMgrConnector.setRule(beamToWireMgr);
+    }
+
+
+    /**
+     * Get the default wire management connector line.
+     */
+    extend public line defaultWireManagementConnectorLine() {
+	double tDepth = getDefaultWireMgrConnectDepth();
+	double tHeight = worksurfaceBottom;
+	return line((0, tDepth, tHeight), (dimension("b"), tDepth, tHeight));
+    }
+
+
+    /*
+     * Default depth of the wire manager.
+     */
+    extend public double getDefaultWireMgrConnectDepth() {
+	return -85mm;
+    }
+
+    
+    /**
+     * Allow beam connection.
+     */
+    extend public bool allowBeamConnection(Connector c, bool blocksWireMgr=true) {
+	
+	if (c == beamConnector) {
+	    //if (screenCL.isConnected) return false;
+	    if (blocksWireMgr and connectedWireMgr) return false;
+	    if (AeWorksurface bws = getWorksurfaceOnEdge("b").AeWorksurface) {
+		if (blocksWireMgr and bws.connectedWireMgr) return false;
+	    }
+
+	    /* CUT THIS OUT  Wed Jun  7 09:49:12 2017 /micch
+	    int beamAccyCount = 0;
+	    for (s in connectedBeamSnappers) {
+		if (s as AeBeamAccessory and s.countTowardsMaxOnWs) {
+		    ++beamAccyCount;
+		}
+	    }
+	    
+	    if (beamAccyCount >= 2) {
+		return false;
+	    }
+	    * CUT THIS OUT /micch */
+	    return true;
+	}
+
+	return false;
+    }
+
+
+    /**
+     * init beam connector.
+     */
+    extend public void initBeamConnector() {
+	beamConnector = ConnectLine(this, beamStartPoint, (270deg, 0deg, 0deg), getPreferredDimension("b") - 340mm);
+	beamConnector.setRule(beamToAccyRule);
+    }
+
+
+    /**
+     * The beam starts here.
+     */
+    extend public point beamStartPoint() {
+	point res =(170mm, -cAeBeamFromEdge, worksurfaceBottom-cAeBeamBelowWorksurface-cAeBeamD/2);
+	return res;
+    }
+
+    
+    /**
+     * Update wire manager connector.
+     */
+    extend public void updateBeamConnectors() {
+	if (!beamConnector) {
+	    initBeamConnector();
+	} else {
+	    beamConnector.setPos(beamStartPoint);
+	    beamConnector.setLength(getPreferredDimension("b") - 340mm);
+	}
+    }
+
+
+    /**
+     * Beam connection.
+     */
+    extend public Snapper[] connectedBeamSnappers() {
+	Snapper[] res();
+	for (c in getBeamConnectors) {
+	    for (s in c.?connectedSnappers) {
+		res << s;
+	    }
+	}
+	return res;
+    }
+
+    /**
+     * the default modesty panel cl
+     */
+    extend public ConnectLine defaultModestyPanelCL() {
+        line cLine = defaultModestyPanelCLLine();
+	ConnectLine output(this, cLine.p0, cLine.p1);
+	output.setRule(wsToModestyPanelRule);
+	return output;
+    }
+
+
+    /**
+     * Get the default screen connect line's defining line.
+     */
+    extend public line defaultModestyPanelCLLine() {
+	double w = getPreferredDimension("b");
+	return line((0, 0, worksurfaceTop), (w, 0, worksurfaceTop));
+    }
+    
+    
+    /**
+     * Conencted wire manager?
+     */
+    extend public AeWireManager connectedWireMgr() {
+	if (wireMgrConnector.?isConnected) {
+	    return wireMgrConnector.connectedSnappers.get.AeWireManager;
+	}
+
+	return null;
+    }
+   
+    
+    /**********************************************************************
+     * Stretching
+     **********************************************************************/
+
+    /**
+     * BeginStretch.
+     */
+    public void beginStretch(Connector s) {
+	if (s as WorksurfaceConnectLine) {
+	    if (s.edgeId in ["f", "rf", "lf"]) {
+		for (sn in allConnected) {
+		    if (sn as AeWorksurface) {
+			protectBoundChange(sn) {
+			    sn.hideSupports = true;
+			    sn.invalidate();
+			}
+		    }
+		}
+	    }
+	}
+	super(s);
+    }
+
+    
+    /**
+     * Stretchable.
+     */
+    public bool stretchable(Connector c) {
+	if (c == connectLine("ls") and getWorksurfaceOnEdge("ls").?AeMeetingEnd) return false;
+	if (c == connectLine("rs") and getWorksurfaceOnEdge("rs").?AeMeetingEnd) return false;
+	return super(..);
+    }
+
+    
+    /**
+     * AdjustNeighboursDuringStretch.
+     */
+    public void adjustNeighborsDuringStretch(Connector s) {
+	if (s as WorksurfaceConnectLine) {
+	    adjustScreens(s);
+	    adjustMeetingEnds(s);
+	    adjustAccessories(s);
+	}
+	super(..);
+    }
+ 
+
+    /**
+     * This worksurface has been stretched.
+     * This method is called by all worksurfaces after stretch and doStretch has been performed.
+     * The input connector is the connector that was stretched.
+     */
+    public void worksurfaceHasBeenStretched(Connector stretchedConnector) {
+	super(..);
+	if (stretchedConnector as WorksurfaceConnectLine) {
+	    //if (stretchedConnector.ct.isFront) invalidateDelinScreens();
+	    adjustWireManagers(stretchedConnector);
+	    /* CUT THIS OUT  Fri Jun  9 13:45:37 2017 /micch
+	    if (canBePowered)
+	      updateInfeedAfterStretch();
+	    * CUT THIS OUT /micch */
+	}
+    }
+
+
+    /**
+     * Adjust all wire managers attached to this worksurface.
+     */
+    extend public void adjustWireManagers(WorksurfaceConnectLine stretchedConnector) {
+
+	str edgeId = stretchedConnector.?edgeId;
+	
+	if (edgeId in ["ls", "rs"]) {
+	    for (snapper in wireMgrConnector.connectedSnappers) {
+		if (?AeWireManager wireManager = snapper) {
+		    HmBaseWorksurface bws = getValidSharedWsOnEdge("b");
+		    double ov = bws.?dimension("b");
+		    bool ll = stretchedConnector.ct.leftSide or stretchedConnector.ct.front;
+		    double nv = dimension("b");
+		    if (isFront(stretchedConnector.ct))	nv = dimension("s");
+		    wireManager.adjustWireManagerDuringStretch(nv, this, edgeId, ll);
+		}
+	    }
+	}
+    }
+   
+    
+    /**
+     * AdjustNeighboursDuringStretch.
+     */
+    extend public void adjustScreens(WorksurfaceConnectLine cl) {
+	HmBaseScreen{} screens = getAllConnectedScreens();
+	
+	for (screen in screens) {
+	    bool isLeft = (cl.ct == worksurfaceConnectType.leftSide);
+	    double nv = (isSide(cl.ct) ? dimension("b") : dimension("ls"));
+	    screen.adjustScreenDuringWsStretch(nv, this, isLeft);
+	}
+    }
+
+    
+    /**
+     * get all connected screens
+     * - screen line/alt screen line/left edge/right edge/modesty/alt modesty
+     */
+    extend public HmBaseScreen{} getAllConnectedScreens() {
+	HmBaseScreen{} screens();
+	
+        screens +=? connectedScreens();
+	screens +=? connectedAltScreens();
+	screens +=? sideConnectedScreens(left=true);
+	screens +=? sideConnectedScreens(left=false);
+	screens +=? getAllConnectectedModestyPanels();
+
+	return screens;
+    }
+
+
+    /**
+     * udpate screen supports and all screens directly connected to us supports
+     */
+    extend public void updateScreenSupports() {
+        HmBaseScreen{} screens = getAllConnectedScreens();
+	
+	if (?AeWorksurface bWs = getWorksurfaceOnEdge("b")) screens +=? bWs.getAllConnectedScreens();
+	if (?AeWorksurface lWs = getWorksurfaceOnEdge("ls")) screens +=? lWs.getAllConnectedScreens();
+	if (?AeWorksurface rWs = getWorksurfaceOnEdge("rs")) screens +=? rWs.getAllConnectedScreens();
+	
+	for (screen in screens) if (screen as HmScreen) screen.updateSupports();
+    }
+    
+    
+    /**
+     * gets screens on the edge
+     */
+    extend public HmBaseScreen{} sideConnectedScreens(bool left=false) {
+	HmBaseScreen{} res();
+	
+	if (left) {
+	    for (snap in leftEdgeScreenCLine.?connectedSnappers) if (snap as HmBaseScreen) res << snap;
+	    
+	} else for (snap in rightEdgeScreenCLine.?connectedSnappers) if (snap as HmBaseScreen) res << snap;
+	
+	return res;
+    }
+
+    
+    /**
+     * get any screen on edge
+     */
+    extend public HmBaseScreen getAnyScreenOnSide(bool left) {
+	if (left) {
+	    for (snap in leftEdgeScreenCLine.?connectedSnappers) if (snap as HmBaseScreen) return snap;
+	    
+	} else for (snap in rightEdgeScreenCLine.?connectedSnappers) if (snap as HmBaseScreen) return snap;
+	
+	return null;
+    }
+
+
+    /**
+     * get attached modesty panel
+     */
+    extend public HmBaseScreen{} getAllConnectectedModestyPanels() {
+	HmBaseScreen{} res();
+	
+	if (modestyPanelCLine.?isConnected) {
+	    for (snap in modestyPanelCLine.connectedSnappers) if (snap as HmBaseScreen) res << snap;
+	}
+
+	return res;
+    }
+
+
+    /**
+     * AdjustNeighboursDuringStretch.
+     */
+    extend public void adjustMeetingEnds(WorksurfaceConnectLine cl) {
+	if (isFront(cl.ct)) {
+	    if (ConnectLine sideCl = connectLine("ls")) {
+		for (snap in sideCl.connectedSnappers) {
+		    if (snap as AeMeetingEnd) snap.updateWidthDuringStretch(dimension("ls"));
+		}
+	    }
+	}
+    }
+    
+    
+    /**
+     * End stretch.
+     */
+    public void endStretch(Connector c) {
+	super(..);
+	
+	if (c as WorksurfaceConnectLine) {
+	    for (sn in allConnected) {
+		if (sn as AeWorksurface) {
+		    sn.hideSupports = false;
+		}
+	    }
+
+	    if (isFront(c.ct)) {
+		if (ConnectLine cl = connectLine("ls")) {
+		    for (snap in cl.connectedSnappers) {
+			if (snap as AeMeetingEnd) snap.updateAfterAttachedWsStretch(this);
+		    }
+		}
+	    }
+	}
+	
+	invalidateSidebarProps(); // Access cutout domain may change
+    }
+
+
+    /***********************************************************************
+     * Stretching
+     ***********************************************************************/
+    
+    /**
+     * doStretch
+     * makes sure the secondary returns are stretched with the width and depth stretching of the primary ws
+     */
+    public bool doStretch(Connector s, point p, AnimationMouseInfo mi) {
+	point originalPos = s.spacePos();
+	
+	if (super(..)) {
+	    if (s == heightSnap) {
+		for (snapper in wireMgrConnector.connectedSnappers) {
+		    if (snapper as AeWireManager) {
+			snapper.recenterWireManager(this);
+		    }
+		}
+		for (snapper in beamConnector.connectedSnappers) {
+		    if (snapper as AeUmbilical) {
+			snapper.recenter();
+		    }
+		}
+		//adjustConnectedAccessories(s);
+	    }
+	    return true;
+	} else return false;
+    }
+
+    
+    /***********************************************************************
+     * Selection
+     ***********************************************************************/
+
+    /**
+     * Append Electrical Connected Lonely Remove snappers to single selection of worksurface
+     */
+    public void appendElectricalConnectedLonelyRemoves(Snapper{} snappers) {
+	super(..);
+
+	for (wm in wireMgrConnector.?connectedSnappers) {
+	    if (wm as AeWireManager) {
+		snappers << wm;
+		for (c in wm.umbilicalConnector.?connections) {
+		    snappers <<? c.snapper;
+		}
+	    }
+	}
+	for (s in beamConnector.?connections)
+	  snappers <<? s.snapper;
+    }
+
+
+    /***********************************************************************
+     * Graphics
+     ***********************************************************************/
+
+    /**
+     * BuildEdge
+     */
+    public Primitive3D buildEdgeSurface3D(FetchEnv3D env, WorksurfacePath dp, angle ar) {
+	if (!dp.closed) return super(env, dp, ar);
+	
+	Primitive3D cached = cache3D(cache3DEdgeKey(env)) {
+	    Primitive3D[] prims();
+	    
+	    Primitive3D pEdge = hmGenericBuildEdgeSurface3D(env, dp, ar, edge);
+	    prims <<? pEdge;
+	    
+	    Instance3D res(prims);
+	    res.move((0, 0, worksurfaceTop-thickness));
+	    if ((Material3D mat = hmMaterialSelector(getEdgeMaterial, env)) and valid) {
+		res.setMaterial(mat);
+	    } else {
+		res.setMaterial(hmInvalidMaterial3D);
+	    }
+	    
+	    result res;
+	};
+	
+	return cached;
+    }
+    
+
+    /**
+     * Edge of the cutouts.
+     */
+    public Primitive3D holesEdge(FetchEnv3D env, WorksurfacePath dp) {
+	if (!dp.closed) return super(..);
+	Primitive3D[] prims();
+	
+	for (h in wirewayHoles) {
+	    if (dp.contains(h)) {
+		PolygonMesh3D hEdge(h.toPolyline, thickness, onlySides=true, doublePoints=true);
+		hEdge.move((0, 0, worksurfaceBottom));
+		prims << hEdge;
+	    }
+	}
+	
+	Primitive3D res = prims.any ? Instance3D(prims) : invisiblePrimitive3D;
+	res.setMaterial(hmMaterialSelector(getEdgeMaterial, env));
+	return res;
+    }
+    
+    
+    /**
+     * Build3DSurface
+     */
+    public Primitive3D buildSurface3D(FetchEnv3D env) {
+	if (!path) buildPath();
+
+	Primitive3D[] prims();
+	
+	if (path) {
+	    angle ar = resolutionAngle(env);
+	    if (WorksurfacePath dp = safeDeductedPath) {
+		AShape2D[] wwHoles = wirewayHoles();
+		Primitive3D surfaceBottom = hmGenericBuildTopBottomSurface3D(env, dp, ar, thickness,
+									     includeTop=false, wirewayHoles=wwHoles);
+		surfaceBottom.move((0, 0, worksurfaceTop-thickness));
+		WorksurfacePath otherDp = path.deductedPath(bottom=true).WorksurfacePath;
+		Primitive3D surfaceTop = hmGenericBuildTopBottomSurface3D(env, otherDp, ar, thickness,
+									  includeBottom=false, wirewayHoles=wwHoles);
+		surfaceTop.move((0, 0, worksurfaceTop-thickness));
+		if (env.detail>detailLevel3D.low) {
+		    prims <<? buildEdgeSurface3D(env, dp, ar);
+		    prims <<? holesEdge(env, dp);
+		}
+		
+		double d = dimension("ls");
+		double w = dimension("b");
+		str edgeCode = edgeProfileCode();
+		// Special corner pieces to fill in where profile front edges meet
+		// square side edges
+		Primitive3D pCornerLeft;
+		Primitive3D pCornerRight;
+		
+		if (edgeCode == "P1") {
+		    pCornerLeft = profileCorner3D(env, true);
+		    pCornerRight = profileCorner3D(env, false);
+		}
+		if ((Material3D mat = hmMaterialSelector(getEdgeMaterial, env)) and valid) {
+		    surfaceBottom.setMaterial(mat);
+		    surfaceTop.setMaterial(mat);
+		    pCornerLeft.?setMaterial(mat);
+		    pCornerRight.?setMaterial(mat);
+		} else {
+		    surfaceBottom.setMaterial(hmInvalidMaterial3D);
+		    surfaceTop.setMaterial(hmInvalidMaterial3D);
+		    pCornerLeft.?setMaterial(hmInvalidMaterial3D);
+		    pCornerRight.?setMaterial(hmInvalidMaterial3D);
+		}
+		prims <<? surfaceBottom;
+		prims <<? surfaceTop;
+		prims <<? pCornerLeft;
+		prims <<? pCornerRight;
+	    }
+	}
+
+	// Draw the directions.
+	if (dbg_drawDirectionsIn3D) {
+	    point tOffset(dimension("b")/2, -dimension("rs") + 20cm, worksurfaceTop);
+	    prims << qText("Front", offset=tOffset, center=true);
+
+	    tOffset = (10cm, -dimension("rs")/2 + 16cm, worksurfaceTop);
+	    prims << qText("L", offset=tOffset, center=true);
+
+	    tOffset = (dimension("b") - 13cm, -dimension("rs")/2 + 16cm, worksurfaceTop);
+	    prims << qText("R", offset=tOffset, center=true);
+	}
+
+	return safeInstance3D(prims, worksurfaceLayer);
+    }
+
+
+    /**
+     * 3D Primitive for corner piece where profile front edge meets square side edge
+     */
+    extend public Primitive3D profileCorner3D(FetchEnv3D env, bool left) {
+	return null;
+    }
+    
+    
+    /***********************************************************************
+     * Access flap
+     ***********************************************************************/
+    
+    /**
+     * Does this worksurface have a access flap (grommet) in the access cutout?
+     */
+    extend public bool hasAccessFlap() {
+	if (flapConnector) {
+	    if (flapConnector.isConnected) return true;
+	}
+	return false;
+    }
+    
+    
+    /**
+     * rotate angle of left leg
+     */
+    extend public angle legRotLeftByAngle() {
+	return 0deg;
+    }
+    
+    
+    /**
+     * rotate angle of Right leg
+     */
+    extend public angle legRotRightByAngle() {
+	return 0deg;
+    }
+    
+}
+
+

@@ -1,0 +1,6 @@
+
+##shortname##.rs,67
+package ##package##;##longclassname##1,0
+
+emea/##shortname##.rs,60
+package ##package##.emea;emea1,0

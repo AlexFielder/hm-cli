@@ -1,16 +1,34 @@
 module.exports = new (function () {
     const path = require('path'),
         fs = require('fs'),
-        snapperTemplate = path.join(__dirname, 'Snapper.txt'),
-        productTemplate = path.join(__dirname, 'Product.txt'),
-        geometryTemplate = path.join(__dirname, './Geometry.txt'),
-        resourceTemplate = path.join(__dirname, 'Resource.txt'),
-        configuratorTemplate = path.join(__dirname, './Configurator.txt'),
-        packageTemplate = path.join(__dirname, './Package.txt');
+        connectTypesTemplate = path.join(__dirname, 'connectTypes.txt'),
+        constantsTemplate = path.join(__dirname, 'constants.txt'),
+        extensionTemplate = path.join(__dirname, 'extension.txt'),
+        extensionDataTemplate = path.join(__dirname, 'extensiondata.txt'),
+        headerTemplate = path.join(__dirname, 'header.txt'),
+        initTemplate = path.join(__dirname, 'init.txt'),
+        libraryTemplate = path.join(__dirname, ''),
+        //snapperTemplate = path.join(__dirname, 'Snapper.txt'),
+        //productTemplate = path.join(__dirname, 'Product.txt'),
+        //geometryTemplate = path.join(__dirname, './Geometry.txt'),
+        //resourceTemplate = path.join(__dirname, 'Resource.txt'),
+        //configuratorTemplate = path.join(__dirname, './Configurator.txt'),
+        packageTemplate = path.join(__dirname, 'Package.txt'),
+        TAGSTemplate = path.join(__dirname, 'TAGS.txt'),
+        TAGRSTemplate = path.join(__dirname, 'TAGSRS.txt'),
+        abbrevTemplate = path.join(__dirname, 'shortextensionname.txt'),
+        connectRulesTemplate = path.join(__dirname, '##ConnectRules.txt'),
+        schemeTemplate = path.join(__dirname, '##Scheme.txt'),
+        worksurfaceTemplate = path.join(__dirname, '##WorkSurface.txt');
 
-    this.scaffold = (name, package, location, shortname, callback) => {
+    this.scaffold = (name, package, location, shortname, longname, twoletteracronym, desiredversion, callback) => {
         location = location || path.dirname(require.main.filename);
         package = package || extractPackage(location);
+        shortname = shortname;
+        longname = longname;
+        twoletteracronym = twoletteracronym;
+        emeaacronym = twoletteracronym + 'e';
+        longclassname = longname.replace(' ', '');
 
         createOrReplaceDirectory(location, err => {
             fs.readFile(snapperTemplate, 'utf-8', (err, snapperContent) => {

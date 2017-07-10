@@ -1,0 +1,143 @@
+/** Configura CET Source Copyright Notice (CETSC)
+
+   This file contains Configura CM source code and is part of the
+   Configura CET Development Platform (CETDEV). Configura CM
+   is a programming language created by Configura Sverige AB.
+   Configura, Configura CET and Configura CM are trademarks of
+   Configura Sverige AB. Configura Sverige AB owns Configura CET,
+   Configura CM, and CETDEV.
+
+   Copyright (C) 2004 Configura Sverige AB, All rights reserved.
+
+   You can modify this source file under the terms of the Configura CET
+   Source Licence Agreement (CETSL) as published by Configura Sverige AB.
+
+   Configura Sverige AB has exclusive rights to all changes, modifications,
+   and corrections of this source file. Configura Sverige AB has exclusive
+   rights to any new source file containing material from this source file.
+   A new source file based on this source file or containing material from
+   this source file has to include this Configura CET Source Copyright Notice
+   in its full content. All changes, modifications, and corrections mentioned
+   above shall be reported to Configura Sverige AB within One Month from
+   the date that the modification occurred.
+
+   Configura CM is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   See the CETSL for more details.
+
+   You should have received a copy of the CETSL along with the CETDEV.
+   If not, write to Configura Sverige AB, Box 306, SE-581 02 Linköping, Sweden.
+   Tel +46 13377800, Fax +46 13377855,
+   Email: info@configura.com, www.configura.com
+
+   END OF CETSC
+*/
+package ##package##;
+use cm: extension, security, extension.util;
+
+
+/**
+ * Extension name.
+ */
+private const str _name = "Herman Miller ##longname##";
+
+
+/**
+ * Abak Environments - Extension class.
+ */
+private class ##twoletteracronym##Extension extends HmMultiCatalogExtension {
+
+    /**
+     * Return the name for this extension.
+     */
+    public str extensionName() { return _name; }
+
+
+    /**
+     * Initiate the resource cascade to be implemented by this extension.
+     */
+    public void initResourceCascade() {
+	putNextRsPkg("##package##", "custom.hermanMiller.worksurfaceCore");
+    }
+
+
+    /**
+     * Load the resources of this extension.
+     */
+    public void loadResources() {
+	//safeLoadRs(cmFindUrl("custom/hermanMiller/abakEnvironments/abakEnv.rs")); //FIXME
+    }
+
+
+    /**
+     * Start.
+     */
+    public void start(ExtensionEnv env) {
+	init##shortname##();
+	super(..);
+    }
+
+    
+    /**
+     * Build libraries.
+     */
+    public LazyLibraryInfo[] buildLibraries(ExtensionEnv env) {
+	LazyLibraryInfo[] libs();
+	// No library of this extension.
+	return libs;
+    }
+
+
+    /**
+     * Additional ExtensionInfo.
+     */
+    public void additionalExtensionInfo(ExtensionInfo info, SrcRef src) {
+	super(..);
+
+	//info.filesToInclude +=? extensionFiles(cmNative("custom/hermanMiller/abakEnvironments/")); //FIXME
+    }
+    
+}
+
+
+/**
+ * Actual extension (dont change function name).
+ */
+package Extension getExtension() : referred {
+    return ##twoletteracronym##Extension();
+}
+
+
+/**
+ * Actual extension id (dont change function name).
+ */
+package ExtensionId getExtensionId() : encrypted {
+    // Created 4/20/2017, restriction=none
+    ExtensionId extensionId(#"##package##", "Herman Miller ##longname##");
+    // ID1=131371587340660000
+    // ID2=4710979691635432715
+    // ID3=-3734568288895725177
+    // ID4=-6793016688806935115
+    // extensionId.id0 = int64(0x1d2b9c3, 0x3d04ed20); //FIXME
+    // extensionId.id1 = int64(0x4160c311, 0xd8025d0b); //FIXME
+    // extensionId.id2 = int64(0xcc2c25ed, 0x86ee9187); // FIXME
+    // extensionId.id3 = int64(0xa1ba5b4f, 0xfe5cc5b5); // FIXME
+    return extensionId;
+}
+
+
+/**
+ * Actual extension info (dont change function name).
+ */
+package ExtensionInfo getExtensionInfo() : referred {
+    return hmLoadExtensionInfoFromXml(getExtension(), #:package, #:src);
+}
+
+{
+    //generateFreeExtensionId(#:package, _name).dumpAsCode();
+    //buildExtension();
+    //autoBuildExtension(#:package);
+}
+
+
