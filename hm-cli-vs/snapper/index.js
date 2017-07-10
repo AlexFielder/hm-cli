@@ -8,7 +8,7 @@ module.exports = new (function () {
         configuratorTemplate = path.join(__dirname, './Configurator.txt'),
         packageTemplate = path.join(__dirname, './Package.txt');
 
-    this.scaffold = (name, package, location, callback) => {
+    this.scaffold = (name, package, location, shortname, callback) => {
         location = location || path.dirname(require.main.filename);
         package = package || extractPackage(location);
 
