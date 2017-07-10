@@ -1,0 +1,171 @@
+/** Configura CET Source Copyright Notice (CETSC)
+
+   This file contains Configura CM source code and is part of the
+   Configura CET Development Platform (CETDEV). Configura CM
+   is a programming language created by Configura Sverige AB.
+   Configura, Configura CET and Configura CM are trademarks of
+   Configura Sverige AB. Configura Sverige AB owns Configura CET,
+   Configura CM, and CETDEV.
+
+   Copyright (C) 2004 Configura Sverige AB, All rights reserved.
+
+   You can modify this source file under the terms of the Configura CET
+   Source Licence Agreement (CETSL) as published by Configura Sverige AB.
+
+   Configura Sverige AB has exclusive rights to all changes, modifications,
+   and corrections of this source file. Configura Sverige AB has exclusive
+   rights to any new source file containing material from this source file.
+   A new source file based on this source file or containing material from
+   this source file has to include this Configura CET Source Copyright Notice
+   in its full content. All changes, modifications, and corrections mentioned
+   above shall be reported to Configura Sverige AB within One Month from
+   the date that the modification occurred.
+
+   Configura CM is distributed in the hope that it will be useful, but
+   WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+   See the CETSL for more details.
+
+   You should have received a copy of the CETSL along with the CETDEV.
+   If not, write to Configura Sverige AB, Box 306, SE-581 02 Linköping, Sweden.
+   Tel +46 13377800, Fax +46 13377855,
+   Email: info@configura.com, www.configura.com
+
+   END OF CETSC
+*/
+package ##package##.emea;
+use cm: extension, security, extension.util;
+
+
+/**
+ * Extension name.
+ */
+private const str _name = "Herman Miller ##longname##";
+
+/**
+ * Portfolio.
+ */
+private const HmEMEAPortfolio e##twoletteracronym##Portfolio(c##shortname##EMEACatId, c##shortname##EMEACatName);
+
+
+/**
+ * Multi-data call-back function.
+ */
+package HmMultiData mdcb(str articleCode) {
+    return E##twoletteracronym##MultiData(articleCode);
+}
+
+
+/**
+ * ##longname## - EMEA - Extension class.
+ */
+private class E##twoletteracronym##Extension extends HmMultiCatalogExtension {
+    
+    /**
+     * Return the name for this extension.
+     */
+    public str extensionName() { return _name; }
+
+
+    /**
+     * Initialize.
+     */
+    public void initialize(ExtensionEnv env) {
+	super(..);
+
+	hmRegisterDsEmbeddedCatalog(e##twoletteracronym##Portfolio, {hmEmea##shortname##20.code});
+	hmRegisterCatalogueCategory(cE##twoletteracronym##ExtensionName, #:package, "eaeLibrary", [HmCatalogue:hmEmea##shortname##20], [HmPortfolio:e##twoletteracronym##Portfolio]);
+	hmAppenddsPDataProxy(cEMEA_##shortname##_20, E##twoletteracronym##DsPDataProxy());
+
+	str multiDataCreatorKey = (c##shortname##ProductSeriesName#";"#cRegionEmea.?code);
+	appendMultiDataCreator(multiDataCreatorKey, function mdcb);
+    }
+
+
+    /**
+     * Initiate the resource cascade to be implemented by this extension.
+     */
+    public void initResourceCascade() {
+	putNextRsPkg("##package##.emea", "##package##");
+    }
+    
+    
+    /**
+     * Load the resources of this extension.
+     */
+    public void loadResources() {
+	safeLoadRs(cmFindUrl("custom/hermanMiller/##longclassname##/emea/##shortname##.rs"));
+    }
+    
+    
+    /***********************************************************************
+     * Actions
+     ***********************************************************************/
+    
+    /**
+     * Start.
+     */
+    public void start(ExtensionEnv env) {
+	initE##twoletteracronym##();
+	super(..);
+    }
+    
+    
+    /**
+     * Build libraries.
+     */
+    public LazyLibraryInfo[] buildLibraries(ExtensionEnv env) {
+	LazyLibraryInfo[] libs();
+	libs << LazyLibraryInfo(cE##twoletteracronym##ExtensionName, #:package, "eaeLibrary", sortkey=e##twoletteracronym##ExtensionSortKey);
+	return libs;
+    }
+
+
+    /**
+     * Append files.
+     */
+    public void additionalExtensionInfo(ExtensionInfo info, SrcRef src) {
+	super(..);
+    }
+}
+
+
+/**
+ * Actual extension (dont change function name).
+ */
+package Extension getExtension() : referred {
+    return E##twoletteracronym##Extension();
+}
+
+
+/**
+ * Actual extension id (dont change function name).
+ */
+package ExtensionId getExtensionId() : encrypted {
+    // Created 4/20/2017, restriction=none
+    ExtensionId extensionId(#"custom.hermanMiller.##longclassname##.emea", "Herman Miller ##longclassname##");
+    // ID1=131371715996020000
+    // ID2=-2480222026269848689
+    // ID3=-3485728585123963829
+    // ID4=-6121272544195304715
+    // extensionId.id0 = int64(0x1d2b9e1, 0x3179ed20); FIXME
+    // extensionId.id1 = int64(0xdd947b35, 0x38160b8f); FIXME
+    // extensionId.id2 = int64(0xcfa03451, 0xec42dc4b); FIXME
+    // extensionId.id3 = int64(0xab0cdf0d, 0x8de322f5); FIXME
+    return extensionId;
+}
+
+
+/**
+ * Actual extension info (dont change function name).
+ */
+package ExtensionInfo getExtensionInfo() : referred {
+    return hmLoadExtensionInfoFromXml(##package##.emea.getExtension(), #:package, #:src);
+}
+
+{
+    //generateFreeExtensionId(#:package, _name).dumpAsCode();
+    //autoBuildExtension(#:package);
+}
+
+

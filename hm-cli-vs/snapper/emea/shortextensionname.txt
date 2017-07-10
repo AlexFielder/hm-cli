@@ -1,0 +1,96 @@
+package ##package##.emea;
+
+/***************************************************************************
+ * Scheme tooltips.
+ ***************************************************************************/
+
+$e##twoletteracronym##LibrarySchemeLabelTip {
+    english "Edit Scheme";
+}
+$e##twoletteracronym##LibrarySchemeLabel {
+    english "Edit Scheme";
+}
+
+/***************************************************************************
+ * Snapper tooltips.
+ ***************************************************************************/
+
+// Primary Worksurfaces
+$E##twoletteracronym##RectangularWorksurfaceTip {
+    english "Rectangular";
+}
+$E##twoletteracronym##SecondaryWsTip {
+    english "Secondary Return";
+}
+$E##twoletteracronym##120DegWorksurfaceTip {
+    english "120 Degree";
+}
+
+// Meeting Tables
+$E##twoletteracronym##RectangularMeetingWorksurfaceTip {
+    english "Rectangular Meeting Table";
+}
+$E##twoletteracronym##OvalMeetingWorksurfaceTip {
+    english "Oval Meeting Table";
+}
+$E##twoletteracronym##BarrelMeetingWorksurfaceTip {
+    english "Barrel Meeting Table";
+}
+$E##twoletteracronym##RoundMeetingWorksurfaceTip {
+    english "Round Meeting Table";
+}
+$E##twoletteracronym##TriangularMeetingWorksurfaceTip {
+    english "Triangular Meeting Table";
+}
+$E##twoletteracronym##EggMeetingWorksurfaceTip {
+    english "Egg Shaped Meeting Table";
+}
+
+// Meeting ends
+$E##twoletteracronym##MeetingEndTip {
+    english "D-end Extension\n \nRequires: Back-to-back Worksurface";
+}
+
+// ##twoletteracronym## System Screens
+$E##twoletteracronym##ModestyScreenTip {
+    english "Modesty Screen";
+}
+$E##twoletteracronym##DeskUpScreenTip {
+    english "Desk Up Screen";
+}
+$E##twoletteracronym##FloorStandingScreenTip {
+    english "Floorstanding Screen";
+}
+$E##twoletteracronym##ModestyPanelTip {
+    english "Modesty Panel";
+}
+$E##twoletteracronym##SystemScreenStackerTip {
+    english "Stacker Screen";
+}
+
+// Wire Management
+$E##twoletteracronym##SingleWireBasketTip {
+    english "Wire Management Basket (Single)";
+}
+$E##twoletteracronym##ShallowWireBasketTip {
+    english "Wire Management Basket (Beam-to-beam)";
+}
+$E##twoletteracronym##BtoBWireBasketTip {
+    english "Wire Management Basket (Back-to-back / high capacity)";
+}
+$E##twoletteracronym##UmbilicalTip {
+    english "Umbilical Riser";
+}
+
+/***************************************************************************
+ * Other tootlips / labels.
+ ***************************************************************************/
+$##twoletteracronym##CapacityLabel {
+    english "Capacity";
+}
+$##twoletteracronym##FacingDirectionLabel {
+    english "Facing direction";
+}
+$##twoletteracronym##ClampPositionLabel {
+    english "Clamp position";
+}

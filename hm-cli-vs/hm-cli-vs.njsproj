@@ -41,6 +41,9 @@
     <Content Include="snapper\##Worksurface.txt" />
     <Content Include="snapper\connectTypes.txt" />
     <Content Include="snapper\constants.txt" />
+    <Content Include="snapper\emea\extension.txt" />
+    <Content Include="snapper\emea\init.txt" />
+    <Content Include="snapper\emea\shortextensionname.txt" />
     <Content Include="snapper\extension.txt" />
     <Content Include="snapper\extensiondata.txt" />
     <Content Include="snapper\header.txt" />
@@ -56,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="snapper\" />
+    <Folder Include="snapper\emea\" />
     <Folder Include="snapper\nppBackup\" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
