@@ -23,4 +23,4 @@ program
         });
     });
 
-program.parse(prosess.argv);
+program.parse(process.argv);
