@@ -30,6 +30,7 @@ This is followed by a selection of files with a lowercase two initial prefix suc
 
 and a \EMEA sub-folder with some of the above repeated:
 
+- emea\extension.cm
 - emea\header.cm
 - emea\init.cm
 - emea\package.cm
