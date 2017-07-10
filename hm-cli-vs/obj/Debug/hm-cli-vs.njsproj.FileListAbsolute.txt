@@ -1,0 +1,2 @@
+C:\Users\Alex.Fielder\Source\Repos\hm-cli-vs\hm-cli-vs\obj\Debug\hm-cli-vs.njsprojResolveAssemblyReference.cache
+C:\Users\Alex.Fielder\Source\Repos\hm-cli-vs\hm-cli-vs\bin\Microsoft.NodejsTools.WebRole.dll
