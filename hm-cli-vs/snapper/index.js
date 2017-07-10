@@ -61,6 +61,11 @@ module.exports = new (function () {
             headerFile = `header.cm`,
             initFile = `init.cm`,
             libraryFile = `library.cm`,
+            packageFile = `package.cm`,
+            schemeFile = `${twoletteracronym}scheme.cm`,
+            TAGSFile = `TAGS`,
+            TAGSRSFile = `TAGSRS`,
+            worksurfaceFile = `${twoletteracronym}worksurface.cm`
             ;
         //createOrReplaceDirectory(location, err => {
         //    fs.readFile(snapperTemplate, 'utf-8', (err, snapperContent) => {
