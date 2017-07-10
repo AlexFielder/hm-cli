@@ -3,6 +3,7 @@ module.exports = new (function () {
         fs = require('fs'),
         snapperTemplate = path.join(__dirname, 'Snapper.txt'),
         productTemplate = path.join(__dirname, 'Product.txt'),
+        geometryTemplate = path.join(__dirname, './Geometry.txt'),
         resourceTemplate = path.join(__dirname, 'Resource.txt'),
         configuratorTemplate = path.join(__dirname, './Configurator.txt'),
         packageTemplate = path.join(__dirname, './Package.txt');

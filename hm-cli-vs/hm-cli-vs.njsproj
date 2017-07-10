@@ -38,6 +38,7 @@
     <Content Include="README.md" />
     <Content Include="snapper\nppBackup\abakEnv.rs.2017-06-05_163327.bak" />
     <Content Include="snapper\Resource.txt" />
+    <Content Include="snapper\Snapper.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="snapper\" />
