@@ -1,6 +1,6 @@
 {
   "name": "hm-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "CLI for Herman Miller framework for CM Language",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/AlexFielder/hm-cli#readme",
   "dependencies": {
-    "commander": "2.9.0"
+    "commander": "^2.9.0"
   },
   "bin": {
     "hm": "./index.js"
