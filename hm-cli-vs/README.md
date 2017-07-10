@@ -24,9 +24,9 @@ shortextensionname.rs
 This is followed by a selection of files with a lowercase two initial prefix such as "ae" (in the case of Abak Environments):
 
 
-##ConnectRules.cm
-##Scheme.cm
-##WorkSurface.cm
+'##ConnectRules.cm
+'##Scheme.cm
+'##WorkSurface.cm
 
 
 
