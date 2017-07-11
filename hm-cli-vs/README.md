@@ -39,7 +39,7 @@ and a \EMEA sub-folder with some of the above repeated:
 
 npm install hm-cli
 
-*If you have gone to the trouble of adding the C:\Users\{yourusername}\AppData\Roaming\npm path to the system path variable, and wish to be able to use this or any other node command from anywhere within the system using the Windows Command prompt it is recommended on Windows 10 to run this command in the following path:
+- If you have gone to the trouble of adding the C:\Users\{yourusername}\AppData\Roaming\npm path to the system path variable, and wish to be able to use this or any other node command from anywhere within the system using the Windows Command prompt it is recommended on Windows 10 to run this command in the following path:
 
 C:\Users\{yourusername}\AppData\Roaming\npm
 
