@@ -28,3 +28,14 @@ program
     });
 
 program.parse(process.argv);
+
+function requireMany () {
+    return Array.prototype.slice.call(arguments).map(function (value) {
+        try {
+            return require(value)
+        }
+        catch (event) {
+            return console.log(event)
+        }
+    })
+}

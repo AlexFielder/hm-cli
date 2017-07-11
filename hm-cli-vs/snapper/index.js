@@ -1,12 +1,13 @@
 module.exports = new (function () {
     const path = require('path'),
         fs = require('fs'),
+        mkdirp = require('mkdirp'),
         abbrevTemplate = path.join(__dirname, 'shortextensionname.txt'),
         connectRulesTemplate = path.join(__dirname, '##ConnectRules.txt'),
         connectTypesTemplate = path.join(__dirname, 'connectTypes.txt'),
         constantsTemplate = path.join(__dirname, 'constants.txt'),
         emeainitTemplate = path.join(__dirname, 'emea/init.txt'),
-        extensionDataTemplate = path.join(__dirname, 'extensiondata.txt'),
+        // extensionDataTemplate = path.join(__dirname, 'extensiondata.txt'),
         extensionTemplate = path.join(__dirname, 'extension.txt'),
         headerTemplate = path.join(__dirname, 'header.txt'),
         initTemplate = path.join(__dirname, 'init.txt'),
@@ -28,6 +29,7 @@ module.exports = new (function () {
 
         
         createOrReplaceDirectory(location, err => {});
+        createOrReplaceDirectory(path.join(location , 'emea'), err => {});
 
             //populate content
             abbrevContent = populateContent(fs, abbrevTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
@@ -35,7 +37,7 @@ module.exports = new (function () {
             connectTypesContent = populateContent(fs, connectTypesTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             constantsContent = populateContent(fs, constantsTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             extensionContent = populateContent(fs, extensionTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
-            extensionDataContent = populateContent(fs, extensionDataTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
+            // extensionDataContent = populateContent(fs, extensionDataTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             headerContent = populateContent(fs, headerTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             initContent = populateContent(fs, initTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             libraryContent = populateContent(fs, libraryTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
@@ -52,7 +54,7 @@ module.exports = new (function () {
             connectTypesFile = `connectTypes.cm`,
             constantsFile = `constants.cm`,
             extensionFile = `extension.cm`,
-            extensionDataFile = `extension.xml`,
+            // extensionDataFile = `extension.xml`,
             headerFile = `header.cm`,
             initFile = `init.cm`,
             libraryFile = `library.cm`,
@@ -64,74 +66,38 @@ module.exports = new (function () {
             //emea files
             emeainitFile = `emea/init.cm`
             ;
-            // console.log("connectrulesfilename= " + connectRulesFile);
-            // console.log(location);
-        saveFile(location, connectRulesFile, connectRulesContent, (callback));
-        saveFile(location, connectTypesFile, connectTypesContent, (callback));
-        saveFile(location, constantsFile, constantsContent, (callback));
-        saveFile(location, extensionFile, extensionContent, (callback));
-        saveFile(location, extensionDataFile, extensionDataContent, (callback));
-        saveFile(location, headerFile, headerContent, (callback));
-        saveFile(location, initFile, initContent, (callback));
-        saveFile(location, libraryFile, libraryContent, (callback));
-        saveFile(location, packageFile, packageContent, (callback));
-        saveFile(location, schemeFile, schemeContent, (callback));
-        saveFile(location, TAGSFile, TAGSContent, (callback));
-        saveFile(location, TAGSRSFile,TAGSRSContent, (callback));
-        saveFile(location, worksurfaceFile, worksurfaceContent, (callback));
-        //emea
-        saveFile(location, emeainitFile, emeainitContent, (callback));
-        //createOrReplaceDirectory(location, err => {
-        //    fs.readFile(snapperTemplate, 'utf-8', (err, snapperContent) => {
-        //        if (err) return callback(err);
-        //        fs.readFile(productTemplate, 'utf-8', (err, productContent) => {
-        //            if (err) return callback(err);
-        //            fs.readFile(configuratorTemplate, 'utf-8', (err, configuratorContent) => {
-        //                if (err) return callback(err);
-        //                fs.readFile(packageTemplate, 'utf-8', (err, packageContent) => {
-        //                    if (err) return callback(err);
-
-        //                    snapperContent = snapperContent.replace(/##name##/g, name).replace(/##package##/g, package);
-        //                    productContent = productContent.replace(/##name##/g, name).replace(/##package##/g, package);
-        //                    resourceContent = resourceContent.replace(/##name##/g, name).replace(/##package##/g, package);
-        //                    configuratorContent = configuratorContent.replace(/##name##/g, name).replace(/##package##/g, package);
-        //                    packageContent = packageContent.replace(/##name##/g, name).replace(/##package##/g, package);
-
-        //                    let snapperFile = `${name}Snapper.cm`,
-        //                        productFile = `${name}Product.cm`,
-        //                        geometryFile = `${name}.rs`,
-        //                        configuratorFile = `${name}Configurator.cm`,
-        //                        packageFile = `package.cm`;
-
-        //                    saveFile(path.join(location, snapperFile), snapperContent, (err) => {
-        //                        if (err) return callback(err);
-        //                        saveFile(path.join(location, productFile), productContent, (err) => {
-        //                            if (err) return callback(err);
-        //                            saveFile(path.join(location, geometryFile), resourceContent, (err) => {
-        //                                if (err) return callback(err);
-        //                                saveFile(path.join(location, configuratorFile), configuratorContent, (err) => {
-        //                                    if (err) return callback(err);
-        //                                    saveFile(path.join(location, packageFile), packageContent, (err) => {
-        //                                        if (err) return callback(err);
-        //                                        callback(null);
-        //                                    });
-        //                                });
-        //                            });
-        //                        });
-        //                    });
-        //                });
-        //            });
-        //        });
-        //    });
-        //});
+            console.log("connectrulesfilename= " + connectRulesFile);
+            console.log("location= " + path.join(location, connectRulesFile));
+            // console.log(connectRulesContent);
+            saveFile(location, connectRulesFile, connectRulesContent, callback);
+            //saveFile(location, connectRulesFile, connectRulesContent, callback);
+            saveFile(location, connectTypesFile, connectTypesContent,  callback);
+            saveFile(location, constantsFile, constantsContent,  callback);
+            saveFile(location, extensionFile, extensionContent,  callback);
+            // saveFile(location, extensionDataFile, extensionDataContent,  callback);
+            saveFile(location, headerFile, headerContent,  callback);
+            saveFile(location, initFile, initContent,  callback);
+            saveFile(location, libraryFile, libraryContent,  callback);
+            saveFile(location, packageFile, packageContent,  callback);
+            saveFile(location, schemeFile, schemeContent,  callback);
+            saveFile(location, TAGSFile, TAGSContent,  callback);
+            saveFile(location, TAGSRSFile, TAGSRSContent,  callback);
+            saveFile(location, worksurfaceFile, worksurfaceContent,  callback);
+            //emea
+            // console.log(emeainitFile);
+            saveFile(location, emeainitFile, emeainitContent,  callback);
     }
 
     function saveFile(location, hmFile, hmContent, callback) {
-        console.log(path.join(location, hmFile));
-        saveFile(path.join(location, hmFile), hmContent, (callback) => {
+        // if (err) throw err;
+        // fs.writeFileSync(path.join(location, hmFile), hmContent, 'utf8', callback);
+        filePath = path.join(location, hmFile);
+        //console.log(filePath);
+        //console.log(hmContent);
+        fs.writeFileSync(filePath, hmContent, function (err) {
             if (err) throw err;
-            callback(null);
-        });
+              console.log(filePath + ' = Saved!');
+            });
     }
     
 
@@ -139,21 +105,17 @@ module.exports = new (function () {
     function populateContent(fs, filelocation, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback) {
         fs.readFile(filelocation, 'utf-8', (err, content) => { 
             if (err) throw err;
-            //shortname = shortname;
-            //longname = longname;
-            //twoletteracronym = twoletteracronym;
-            //emeaacronym = twoletteracronym + 'e';
-            //longclassname = longname.replace(' ', '');
-
+            //console.log(content);
             //console.log(filelocation);
             
             replacedcontent = content.replace(/##name##/g, name)
-                .replace(/##package##/g, package)
-                .replace(/##shortname##/g, shortname)
-                .replace(/##longname##/g, longname)
-                .replace(/##twoletteracronym##/g, twoletteracronym)
-                .replace(/##longclassname##/g, longclassname)
-                .replace(/##desiredversion##/g, desiredversion);
+            replacedcontent = replacedcontent.replace(/##package##/g, package)
+            replacedcontent = replacedcontent.replace(/##shortname##/g, shortname)
+            replacedcontent = replacedcontent.replace(/##longname##/g, longname)
+            replacedcontent = replacedcontent.replace(/##twoletteracronym##/g, twoletteracronym)
+            replacedcontent = replacedcontent.replace(/##longclassname##/g, longclassname)
+            replacedcontent = replacedcontent.replace(/##desiredversion##/g, desiredversion);
+            // console.log(replacedcontent);
                 // console.log(replacedcontent);
         return replacedcontent;
         });
@@ -168,7 +130,7 @@ module.exports = new (function () {
             segments = package.split('.');
 
         package = package.replace(segments[segments.length - 1], firstToLowerCase(segments[segments.length - 1]));
-        console.log(package);
+        //console.log(package);
         return package;
     }
 
@@ -177,27 +139,35 @@ module.exports = new (function () {
     }
 
     function createOrReplaceDirectory(dirName, callback) {
-        fs.exists(dirName, (err, exists) => {
-            if (err) return callback(err);
-
-            if (exists) {
-                callback(null);
-            } else {
-                fs.mkdir(dirName, (err) => {
-                    if (err) return callback(err);
-
-                    callback(null);
-                });
+        // console.log(dirName);
+        if (!fs.existsSync(dirName)){
+                fs.mkdirSync(dirName);
             }
-        });
+        // fs.exists(dirName, (err, exists) => {
+        //     if (err) return callback(err);
+
+        //     if (exists) {
+        //         callback(null);
+        //     } else {
+        //         mkdirp(dirName, function (err) {
+        //                 if (err) console.error(err)
+        //                 else console.log('pow!')
+        //                 });
+        //         // fs.mkdir(dirName, (err) => {
+        //         //     if (err) return callback(err);
+        //         //     console.log(dirName + " created!");
+        //         //     callback(null);
+        //         // });
+        //     }
+        // });
     }
 
-    function saveFile(file, content, callback) {
-        // console.log(file);
-        fs.writeFile(file, content, 'utf-8', (err) => {
-            // if (err) throw err;
+    // function saveFile(file, content, callback) {
+    //     // console.log(file);
+    //     fs.writeFile(file, content, 'utf-8', (err) => {
+    //         // if (err) throw err;
             
-            // callback(null);
-        });
-    }
+    //         // callback(null);
+    //     });
+    // }
 })()

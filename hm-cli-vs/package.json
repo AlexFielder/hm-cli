@@ -24,7 +24,8 @@
   },
   "homepage": "https://github.com/AlexFielder/hm-cli#readme",
   "dependencies": {
-    "commander": "^2.9.0"
+    "commander": "^2.11.0",
+    "mkdirp": "^0.5.1"
   },
   "bin": {
     "hm": "./index.js"
