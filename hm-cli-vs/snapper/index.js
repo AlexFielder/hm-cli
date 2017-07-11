@@ -39,6 +39,7 @@ module.exports = new (function () {
             extensionContent = populateContent(fs, extensionTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             // extensionDataContent = populateContent(fs, extensionDataTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             headerContent = populateContent(fs, headerTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
+            console.log(headerContent);
             initContent = populateContent(fs, initTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             libraryContent = populateContent(fs, libraryTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             packageContent = populateContent(fs, packageTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
@@ -83,6 +84,7 @@ module.exports = new (function () {
             saveFile(location, TAGSFile, TAGSContent,  callback);
             saveFile(location, TAGSRSFile, TAGSRSContent,  callback);
             saveFile(location, worksurfaceFile, worksurfaceContent,  callback);
+            console.log("ws content = "+ worksurfaceContent);
             //emea
             // console.log(emeainitFile);
             saveFile(location, emeainitFile, emeainitContent,  callback);
@@ -103,22 +105,43 @@ module.exports = new (function () {
 
 
     function populateContent(fs, filelocation, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback) {
-        fs.readFile(filelocation, 'utf-8', (err, content) => { 
-            if (err) throw err;
-            //console.log(content);
-            //console.log(filelocation);
-            
-            replacedcontent = content.replace(/##name##/g, name)
-            replacedcontent = replacedcontent.replace(/##package##/g, package)
-            replacedcontent = replacedcontent.replace(/##shortname##/g, shortname)
-            replacedcontent = replacedcontent.replace(/##longname##/g, longname)
-            replacedcontent = replacedcontent.replace(/##twoletteracronym##/g, twoletteracronym)
-            replacedcontent = replacedcontent.replace(/##longclassname##/g, longclassname)
-            replacedcontent = replacedcontent.replace(/##desiredversion##/g, desiredversion);
-            // console.log(replacedcontent);
-                // console.log(replacedcontent);
-        return replacedcontent;
-        });
+        filelocation = filelocation;
+        name = name;
+        package = package;
+        shortname = shortname;
+        longname = longname;
+        twoletteracronym = twoletteracronym;
+        longclassname = longclassname;
+        desiredversion = desiredversion;
+        
+        // console.log(filelocation);
+        replacedContent = "CHANGEME";
+        var content = ''
+        content = fs.readFileSync(filelocation,'utf-8');
+        // if (err) throw err;
+        // console.log(content);
+        //console.log(filelocation);
+        // console.log("name = " + name);
+        var replaceArray = ['##name##','##package##','##shortname##','##longname##','##twoletteracronym##','##longclassname##','##version##'];
+        var replaceArrayValues = [`${name}`, `${package}`, `${shortname}`, `${longname}`, `${twoletteracronym}`, `${longclassname}`, `${desiredversion}`];
+        for (var i = replaceArray.length - 1 ; i >= 0; i--) {
+            // console.log(replaceArray[i]);
+            // console.log(replaceArrayValues[i]);
+            var finalAns = content.replace(replaceArray[i],replaceArrayValues[i]);
+            replacedContent = finalAns;
+        }
+        // console.log(replacedContent);
+        // replacedcontent = content.replace(/##name##/g, name)
+        // .replace(/##package##/g, package)
+        // .replace(/##shortname##/g, shortname)
+        // .replace(/##longname##/g, longname)
+        // .replace(/##twoletteracronym##/g, twoletteracronym)
+        // .replace(/##longclassname##/g, longclassname)
+        // .replace(/##desiredversion##/g, desiredversion);
+        // console.log(replacedcontent);
+        return replacedContent;
+
+        
     }
 
     function extractPackage(location) {
