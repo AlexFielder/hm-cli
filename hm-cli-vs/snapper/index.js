@@ -39,7 +39,6 @@ module.exports = new (function () {
             extensionContent = populateContent(fs, extensionTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             // extensionDataContent = populateContent(fs, extensionDataTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             headerContent = populateContent(fs, headerTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
-            console.log(headerContent);
             initContent = populateContent(fs, initTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             libraryContent = populateContent(fs, libraryTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
             packageContent = populateContent(fs, packageTemplate, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback);
@@ -69,9 +68,7 @@ module.exports = new (function () {
             ;
             // console.log("connectrulesfilename= " + connectRulesFile);
             // console.log("location= " + path.join(location, connectRulesFile));
-            // console.log(connectRulesContent);
             saveFile(location, connectRulesFile, connectRulesContent, callback);
-            //saveFile(location, connectRulesFile, connectRulesContent, callback);
             saveFile(location, connectTypesFile, connectTypesContent,  callback);
             saveFile(location, constantsFile, constantsContent,  callback);
             saveFile(location, extensionFile, extensionContent,  callback);
@@ -84,53 +81,35 @@ module.exports = new (function () {
             saveFile(location, TAGSFile, TAGSContent,  callback);
             saveFile(location, TAGSRSFile, TAGSRSContent,  callback);
             saveFile(location, worksurfaceFile, worksurfaceContent,  callback);
-            // console.log("ws content = "+ worksurfaceContent);
             //emea
-            // console.log(emeainitFile);
             saveFile(location, emeainitFile, emeainitContent,  callback);
     }
 
     function saveFile(location, hmFile, hmContent, callback) {
-        // if (err) throw err;
-        // fs.writeFileSync(path.join(location, hmFile), hmContent, 'utf8', callback);
         filePath = path.join(location, hmFile);
-        //console.log(filePath);
-        //console.log(hmContent);
         fs.writeFileSync(filePath, hmContent, function (err) {
             if (err) throw err;
               console.log(filePath + ' = Saved!');
             });
+            console.log(filePath + ' = Saved!');
     }
     
 
 
     function populateContent(fs, filelocation, name, package, shortname, longname, twoletteracronym, longclassname, desiredversion, callback) {
-        filelocation = filelocation;
-        name = name;
-        package = package;
-        shortname = shortname;
-        longname = longname;
-        twoletteracronym = twoletteracronym;
-        longclassname = longclassname;
-        desiredversion = desiredversion;
+        // filelocation = filelocation;
+        // name = name;
+        // package = package;
+        // shortname = shortname;
+        // longname = longname;
+        // twoletteracronym = twoletteracronym;
+        // longclassname = longclassname;
+        // desiredversion = desiredversion;
         
         // console.log(filelocation);
         replacedContent = "CHANGEME";
         var content = ''
         content = fs.readFileSync(filelocation,'utf-8');
-        // if (err) throw err;
-        // console.log(content);
-        //console.log(filelocation);
-        // console.log("name = " + name);
-        // var replaceArray = ['##name##','##package##','##shortname##','##longname##','##twoletteracronym##','##longclassname##','##version##'];
-        // var replaceArrayValues = [`${name}`, `${package}`, `${shortname}`, `${longname}`, `${twoletteracronym}`, `${longclassname}`, `${desiredversion}`];
-        // for (var i = replaceArray.length - 1 ; i >= 0; i--) {
-        //     // console.log(replaceArray[i]);
-        //     // console.log(replaceArrayValues[i]);
-        //     var finalAns = content.replace(replaceArray[i],replaceArrayValues[i]);
-        //     replacedContent = finalAns;
-        // }
-        // console.log(replacedContent);
         replacedContent = content.replace(/##name##/g, name)
         .replace(/##package##/g, package)
         .replace(/##shortname##/g, shortname)
@@ -138,7 +117,6 @@ module.exports = new (function () {
         .replace(/##twoletteracronym##/g, twoletteracronym)
         .replace(/##longclassname##/g, longclassname)
         .replace(/##version##/g, desiredversion);
-        // console.log(replacedContent);
         return replacedContent;
 
         
@@ -166,31 +144,5 @@ module.exports = new (function () {
         if (!fs.existsSync(dirName)){
                 fs.mkdirSync(dirName);
             }
-        // fs.exists(dirName, (err, exists) => {
-        //     if (err) return callback(err);
-
-        //     if (exists) {
-        //         callback(null);
-        //     } else {
-        //         mkdirp(dirName, function (err) {
-        //                 if (err) console.error(err)
-        //                 else console.log('pow!')
-        //                 });
-        //         // fs.mkdir(dirName, (err) => {
-        //         //     if (err) return callback(err);
-        //         //     console.log(dirName + " created!");
-        //         //     callback(null);
-        //         // });
-        //     }
-        // });
     }
-
-    // function saveFile(file, content, callback) {
-    //     // console.log(file);
-    //     fs.writeFile(file, content, 'utf-8', (err) => {
-    //         // if (err) throw err;
-            
-    //         // callback(null);
-    //     });
-    // }
 })()
