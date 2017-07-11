@@ -67,8 +67,8 @@ module.exports = new (function () {
             //emea files
             emeainitFile = `emea/init.cm`
             ;
-            console.log("connectrulesfilename= " + connectRulesFile);
-            console.log("location= " + path.join(location, connectRulesFile));
+            // console.log("connectrulesfilename= " + connectRulesFile);
+            // console.log("location= " + path.join(location, connectRulesFile));
             // console.log(connectRulesContent);
             saveFile(location, connectRulesFile, connectRulesContent, callback);
             //saveFile(location, connectRulesFile, connectRulesContent, callback);
@@ -84,7 +84,7 @@ module.exports = new (function () {
             saveFile(location, TAGSFile, TAGSContent,  callback);
             saveFile(location, TAGSRSFile, TAGSRSContent,  callback);
             saveFile(location, worksurfaceFile, worksurfaceContent,  callback);
-            console.log("ws content = "+ worksurfaceContent);
+            // console.log("ws content = "+ worksurfaceContent);
             //emea
             // console.log(emeainitFile);
             saveFile(location, emeainitFile, emeainitContent,  callback);
@@ -122,23 +122,23 @@ module.exports = new (function () {
         // console.log(content);
         //console.log(filelocation);
         // console.log("name = " + name);
-        var replaceArray = ['##name##','##package##','##shortname##','##longname##','##twoletteracronym##','##longclassname##','##version##'];
-        var replaceArrayValues = [`${name}`, `${package}`, `${shortname}`, `${longname}`, `${twoletteracronym}`, `${longclassname}`, `${desiredversion}`];
-        for (var i = replaceArray.length - 1 ; i >= 0; i--) {
-            // console.log(replaceArray[i]);
-            // console.log(replaceArrayValues[i]);
-            var finalAns = content.replace(replaceArray[i],replaceArrayValues[i]);
-            replacedContent = finalAns;
-        }
+        // var replaceArray = ['##name##','##package##','##shortname##','##longname##','##twoletteracronym##','##longclassname##','##version##'];
+        // var replaceArrayValues = [`${name}`, `${package}`, `${shortname}`, `${longname}`, `${twoletteracronym}`, `${longclassname}`, `${desiredversion}`];
+        // for (var i = replaceArray.length - 1 ; i >= 0; i--) {
+        //     // console.log(replaceArray[i]);
+        //     // console.log(replaceArrayValues[i]);
+        //     var finalAns = content.replace(replaceArray[i],replaceArrayValues[i]);
+        //     replacedContent = finalAns;
+        // }
         // console.log(replacedContent);
-        // replacedcontent = content.replace(/##name##/g, name)
-        // .replace(/##package##/g, package)
-        // .replace(/##shortname##/g, shortname)
-        // .replace(/##longname##/g, longname)
-        // .replace(/##twoletteracronym##/g, twoletteracronym)
-        // .replace(/##longclassname##/g, longclassname)
-        // .replace(/##desiredversion##/g, desiredversion);
-        // console.log(replacedcontent);
+        replacedContent = content.replace(/##name##/g, name)
+        .replace(/##package##/g, package)
+        .replace(/##shortname##/g, shortname)
+        .replace(/##longname##/g, longname)
+        .replace(/##twoletteracronym##/g, twoletteracronym)
+        .replace(/##longclassname##/g, longclassname)
+        .replace(/##version##/g, desiredversion);
+        // console.log(replacedContent);
         return replacedContent;
 
         
