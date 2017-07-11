@@ -35,7 +35,7 @@ and a \EMEA sub-folder with some of the above repeated:
 - emea\init.cm
 - emea\package.cm
 
-#Installation:
+# Installation:
 
 npm install hm-cli
 
@@ -46,7 +46,7 @@ C:\Users\{yourusername}\AppData\Roaming\npm
 This ensures that the node_modules folder is created in the correct place and means that you will not receive "unknown command" errors.
 
 
-##Usage:
+# Usage:
 
 hm snapper AbakEnvironments --location C:\CetDev\version#.#\home\custom\hermanMiller\abakEnvironments --shortname AbakEnv --longname "Abak Environments" --twoletteracronym ae --desiredversion 0.0.1
 
