@@ -60,8 +60,8 @@ public Library ##twoletteracronym##Library() {
     
     if (cat.?dataCatalog and cat.?validCatalogue) {
 	Library lib = library(pkg=pkg, companyKey=cHmGroup, viewModeHook=function setHmViewModes) {
-	    container LibraryLimb root("aeLibraryHeader") {
-		limb HeaderLimb head("aeLibraryHeader", extendRight=true, compact=false);
+	    container LibraryLimb root("##twoletteracronym##LibraryLibraryHeader") {
+		limb HeaderLimb head("##twoletteracronym##LibraryLibraryHeader", extendRight=true, compact=false);
 		
 		// Scheme
 		container LayoutGroupLimb schemes("hmSchemesGroup") {
@@ -76,13 +76,16 @@ public Library ##twoletteracronym##Library() {
 		}
 		
 		// Primary Worksurfaces
+		/* FIXME
 		container LibraryLimb ##twoletteracronym##PriWss("##twoletteracronym##PriWss") {
-		    //limb HmSnapperLimb aeReWs(key="EaeRectangularWorksurface", cat=cat, image=aeIcon("AeReWs.png"), pkg=emea);
+		    //limb HmSnapperLimb aeReWs(key="EaeRectangularWorksurface", cat=cat, image=##twoletteracronym##LibraryIcon("##twoletteracronym##LibraryReWs.png"), pkg=emea);
 		    //limb HmSnapperLimb aeSecWs(key="EaeSecondaryWs", cat=cat, image=aeIcon("AeSecWs.png"), pkg=emea);
 		    //limb HmSnapperLimb ae120Ws(key="Eae120DegWorksurface", cat=cat, image=aeIcon("Ae120Ws.png"), pkg=emea);
 		}
-		
+		*/
+
 		// Meeting Tables
+		/* FIXME
 		container LibraryLimb ##twoletteracronym##MeetingWss("##twoletteracronym##MeetingWss") {
 		    //limb HmSnapperLimb aeMeWsRe(key="EaeRectangularMeetingWorksurface", cat=cat, image=aeIcon("AeReMeWs.png"), pkg=emea);
 		    //limb HmSnapperLimb aeMeWsOv(key="EaeOvalMeetingWorksurface", cat=cat, image=aeIcon("AeOvMeWs.png"), pkg=emea);
@@ -92,13 +95,17 @@ public Library ##twoletteracronym##Library() {
 		    //limb HmSnapperLimb aeMeWsTri(key="EaeTriangularMeetingWorksurface", cat=cat, image=aeIcon("AeMeWsTri.png"), pkg=emea);
 		    //limb HmSnapperLimb aeMeWsEgg(key="EaeEggMeetingWorksurface", cat=cat, image=aeIcon("AeMeWsEgg.png"), pkg=emea);
 		}
+		*/
 
 		// Meeting Ends
+		/* FIXME
 		container LibraryLimb ##twoletteracronym##MeetingEnds("##twoletteracronym##MeetingEnds") {
 		    //limb HmSnapperLimb aeDWs(key="EaeMeetingEnd", cat=cat, image=aeIcon("AeDWs.png"), pkg=emea);
 		}
+		*/
 
 		// ##twoletteracronym## System Screens
+		/* FIXME
 		container LibraryLimb ##twoletteracronym##Scs("##twoletteracronym##Scs") {
 		    //limb HmSnapperLimb aeMoSc(key="EaeModestyScreen", cat=cat, image=aeIcon("AeSysScMo.png"), pkg=emea);
 		    //limb HmSnapperLimb aeDUSc(key="EaeDeskUpScreen", cat=cat, image=aeIcon("AeSysScDU.png"), pkg=emea);
@@ -106,15 +113,17 @@ public Library ##twoletteracronym##Library() {
 		    //limb HmSnapperLimb aeMoPa(key="EaeModestyPanel", cat=cat, image=aeIcon("AeMoPa.png"), pkg=emea);
 		    //limb HmSnapperLimb aeScSt(key="EaeSystemScreenStacker", cat=cat, image=aeIcon("AeScSt.png"), pkg=emea);
 		}
+		*/
 		
 		// Wire Management
+		/* FIXME
 		container LibraryLimb ##twoletteracronym##Wm("##twoletteracronym##Wm") {
 		    //limb HmSnapperLimb aeWmBSingle(key="EaeSingleWireBasket", cat=cat, image=aeIcon("AeWireBasketSingle.png"), pkg=emea);
 		    //limb HmSnapperLimb aeWmBShallow(key="EaeShallowWireBasket", cat=cat, image=aeIcon("AeWireBasketShallow.png"), pkg=emea);
 		    //limb HmSnapperLimb aeWmBtoB(key="EaeBtoBWireBasket", cat=cat, image=aeIcon("AeWireBasketBtoB.png"), pkg=emea);
 		    //limb HmSnapperLimb aeUmb(key="EaeUmbilical", cat=cat, image=aeIcon("AeUmb.png"), pkg=emea);
 		}
-		
+		*/
 	    }
 	};
 	library = lib;

@@ -1,2 +1,4 @@
 #notepad++ backups
 *.bak
+# Visual Studio Code .history files
+.history
